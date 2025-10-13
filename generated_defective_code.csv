@@ -1,0 +1,111 @@
+language,code_snippet,smell_or_defect,type_of_defect_or_smell,static_analysis
+Java,"public class DataProcessor {
+    public static void main(String[] args) {
+        String data = null;
+        if (args.length > 0) {
+            data = args[0];
+        }
+
+        System.out.println(""Processing: "" + data);
+
+        // Dead code due to unreachable condition
+        if (data == null && data.length() > 0) {
+            System.out.println(""Data is null but also has length?!"");
+        }
+
+        try {
+            int result = 0;
+            for (int i = 0; i < 100000000; i++) {
+                result += i;
+            }
+            System.out.println(""Result: "" + result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}",code_defect,error_prone_logic,
+C++,"#include <iostream>
+#include <vector>
+
+int main() {
+    std::vector<int> numbers = {1, 2, 3, 4, 5};
+    int sum = 0;
+
+    for (int i = 0; i <= numbers.size(); i++) {
+        sum += numbers[i];
+    }
+
+    std::cout << ""Sum: "" << sum << std::endl;
+    return 0;
+}",code_defect,off-by-one error,
+JavaScript,"function processUserData(users) {
+  const processedUsers = [];
+  for (let i = 0; i < users.length; i++) {
+    let user = users[i];
+    if (user.age > 18) {
+      user.status = 'adult';
+    } else {
+      user.status = 'minor';
+    }
+    processedUsers.push(user);
+    // Dead code below
+    const unusedVar = 'This variable is never used';
+  }
+  return processedUsers;
+}
+
+// Example usage
+const sampleUsers = [
+  { name: 'Alice', age: 25 },
+  { name: 'Bob', age: 17 },
+  { name: 'Charlie', age: 30 }
+];
+
+console.log(processUserData(sampleUsers));",code_smell,dead_code,
+JavaScript,"function processData(data) {
+  let result = [];
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].status === 'active') {
+      let temp = {};
+      temp.id = data[i].id;
+      temp.name = data[i].name;
+      temp.email = data[i].email;
+      result.push(temp);
+    }
+  }
+  return result;
+}
+
+function sendEmails(emailList) {
+  for (let i = 0; i < emailList.length; i++) {
+    let email = emailList[i];
+    if (email) {
+      console.log(`Sending email to ${email}`);
+    }
+  }
+}
+
+const users = [
+  { id: 1, name: 'Alice', email: 'alice@example.com', status: 'active' },
+  { id: 2, name: 'Bob', email: 'bob@example.com', status: 'inactive' },
+  { id: 3, name: 'Charlie', email: 'charlie@example.com', status: 'active' }
+];
+
+const activeUsers = processData(users);
+const emails = activeUsers.map(user => user.email);
+
+sendEmails(emails);",code_defect,Error-prone logic,
+C++,"#include <iostream>
+#include <vector>
+
+int main() {
+    std::vector<int> nums = {1, 2, 3, 4, 5};
+    int total = 0;
+
+    for (int i = 0; i <= nums.size(); i++) {
+        total += nums[i];
+    }
+
+    std::cout << ""Total: "" << total << std::endl;
+    return 0;
+}",code_defect,off-by-one error,
