@@ -1,111 +1,107 @@
-language,code_snippet,smell_or_defect,type_of_defect_or_smell,static_analysis
-Java,"public class DataProcessor {
-    public static void main(String[] args) {
-        String data = null;
-        if (args.length > 0) {
-            data = args[0];
-        }
+language,code_snippet,smell_or_defect,type_of_defect_or_smell,static_analysis,model
+Python,"import csv
 
-        System.out.println(""Processing: "" + data);
+def load_user_data(file_path):
+    users = []
+    with open(file_path, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            users.append({
+                'id': int(row['id']),
+                'name': row['name'],
+                'email': row['email']
+            })
+    return users
 
-        // Dead code due to unreachable condition
-        if (data == null && data.length() > 0) {
-            System.out.println(""Data is null but also has length?!"");
-        }
+def find_user_by_id(users, target_id):
+    # Off‑by‑one error: should use <= len(users)-1
+    for i in range(len(users)):
+        if users[i]['id'] == target_id:
+            return users[i]
+    return None
 
-        try {
-            int result = 0;
-            for (int i = 0; i < 100000000; i++) {
-                result += i;
+if __name__ == ""__main__"":
+    data = load_user_data('users.csv')
+    user = find_user_by_id(data, 5)
+    if user:
+        print(f""Found user: {user['name']} ({user['email']})"")
+    else:
+        print(""User not found"")
+",code_defect,off_by_one_error,,openai/gpt-oss-120b
+C++,"#include <iostream>
+#include <vector>
+#include <string>
+
+std::vector<std::string> processUserInputs(const std::vector<std::string>& inputs) {
+    std::vector<std::string> results;
+    for (const auto& input : inputs) {
+        std::string trimmed = input;
+        for (int i = 0; i < trimmed.length(); ++i) {
+            if (trimmed[i] == ' ') {
+                trimmed.erase(i);
+                --i;
             }
-            System.out.println(""Result: "" + result);
-        } catch (Exception e) {
-            e.printStackTrace();
+        }
+        if (trimmed.length() > 0) {
+            results.push_back(trimmed);
         }
     }
-}",code_defect,error_prone_logic,
-C++,"#include <iostream>
-#include <vector>
+    return results;
+}
 
 int main() {
-    std::vector<int> numbers = {1, 2, 3, 4, 5};
-    int sum = 0;
-
-    for (int i = 0; i <= numbers.size(); i++) {
-        sum += numbers[i];
+    std::vector<std::string> userInputs = {""  Hello World  "", ""   "", ""Good Morning"", ""C++ is great""};
+    std::vector<std::string> processed = processUserInputs(userInputs);
+    for (const auto& str : processed) {
+        std::cout << str << std::endl;
     }
-
-    std::cout << ""Sum: "" << sum << std::endl;
     return 0;
-}",code_defect,off-by-one error,
-JavaScript,"function processUserData(users) {
-  const processedUsers = [];
-  for (let i = 0; i < users.length; i++) {
-    let user = users[i];
-    if (user.age > 18) {
-      user.status = 'adult';
+}",code_smell,inefficient_loop,,qwen/qwen3-32b
+JavaScript,function calculateTotalPrice(order) { let total = 0; for (let i = 0; i < order.items.length; i++) { const item = order.items[i]; total += item.price * item.quantity; } return total; },clean_code,well_structured,,llama-3.3-70b-versatile
+JavaScript,"const express = require('express');
+const router = express.Router();
+
+// Fetch paginated list of users
+router.get('/users', async (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const pageSize = 20;
+  const offset = (page - 1) * pageSize;
+  try {
+    const users = await db.query('SELECT * FROM users LIMIT ?, ?', [offset, pageSize]);
+    const total = await db.query('SELECT COUNT(*) as cnt FROM users');
+    const totalPages = Math.ceil(total[0].cnt / pageSize);
+    // Off‑by‑one error: should be page <= totalPages, not <
+    if (page < totalPages) {
+      res.json({ page, totalPages, data: users });
     } else {
-      user.status = 'minor';
+      res.status(400).json({ error: 'Page out of range' });
     }
-    processedUsers.push(user);
-    // Dead code below
-    const unusedVar = 'This variable is never used';
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
   }
-  return processedUsers;
+});
+
+module.exports = router;",code_defect,off_by_one_error,,openai/gpt-oss-120b
+Python,"import os
+import time
+
+CONFIG = {
+    'db_host': 'localhost',
+    'db_port': 5432,
+    'username': 'admin',
+    'password': 's3cr3tP@ss',
 }
 
-// Example usage
-const sampleUsers = [
-  { name: 'Alice', age: 25 },
-  { name: 'Bob', age: 17 },
-  { name: 'Charlie', age: 30 }
-];
+def connect_to_db():
+    host = CONFIG['db_host']
+    port = CONFIG['db_port']
+    user = CONFIG['username']
+    password = CONFIG['password']
+    
+    print(f""Connecting to {host}:{port} as {user}..."")
+    time.sleep(1)
+    print(""Connection established."")
 
-console.log(processUserData(sampleUsers));",code_smell,dead_code,
-JavaScript,"function processData(data) {
-  let result = [];
-  for (let i = 0; i < data.length; i++) {
-    if (data[i].status === 'active') {
-      let temp = {};
-      temp.id = data[i].id;
-      temp.name = data[i].name;
-      temp.email = data[i].email;
-      result.push(temp);
-    }
-  }
-  return result;
-}
-
-function sendEmails(emailList) {
-  for (let i = 0; i < emailList.length; i++) {
-    let email = emailList[i];
-    if (email) {
-      console.log(`Sending email to ${email}`);
-    }
-  }
-}
-
-const users = [
-  { id: 1, name: 'Alice', email: 'alice@example.com', status: 'active' },
-  { id: 2, name: 'Bob', email: 'bob@example.com', status: 'inactive' },
-  { id: 3, name: 'Charlie', email: 'charlie@example.com', status: 'active' }
-];
-
-const activeUsers = processData(users);
-const emails = activeUsers.map(user => user.email);
-
-sendEmails(emails);",code_defect,Error-prone logic,
-C++,"#include <iostream>
-#include <vector>
-
-int main() {
-    std::vector<int> nums = {1, 2, 3, 4, 5};
-    int total = 0;
-
-    for (int i = 0; i <= nums.size(); i++) {
-        total += nums[i];
-    }
-
-    std::cout << ""Total: "" << total << std::endl;
-    return 0;
-}",code_defect,off-by-one error,
+if __name__ == ""__main__"":
+    connect_to_db()",code_defect,hardcoded_credentials,,qwen/qwen3-32b
