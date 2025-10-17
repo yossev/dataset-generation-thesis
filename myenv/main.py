@@ -26,6 +26,7 @@ Generate a single {language} code snippet (10–50 lines) that clearly contains 
 2. A **code smell** — poor design or maintainability issue (not immediately breaking, but bad practice).
 3. A **code defect** — an actual logic or security bug that would cause faulty behavior.
 
+The snippet should include at least one function or class with realistic names and some internal logic — not just short demos.
 Alternate between generating clean code, smells, and defects in different requests.
 
 Examples of what to include:
@@ -69,7 +70,7 @@ COLUMNS = [
     "model",
 ]
 
-for i in range(5):
+for i in range(100):
     chosen_lang = random.choice(languages)
     model_name = models[i % len(models)]
     prompt = get_prompt_with_lang(chosen_lang)
@@ -131,6 +132,23 @@ for i in range(5):
             print("Retrying this model after 60 seconds...")
             time.sleep(60)
 
-print(all_snippets)
-df = pd.DataFrame(all_snippets)
-df.to_csv("generated_defective_code.csv", index=False)
+
+
+output_file = "generated_defective_code.csv"
+
+# Convert new data to DataFrame
+df_new = pd.DataFrame(all_snippets)
+
+if os.path.exists(output_file):
+    print(f"📂 '{output_file}' found — appending new data...")
+    # Read existing file
+    df_existing = pd.read_csv(output_file)
+    # Concatenate old + new
+    df_combined = pd.concat([df_existing, df_new], ignore_index=True)
+    # Drop duplicates if needed (optional)
+    df_combined.drop_duplicates(subset=["code_snippet"], inplace=True)
+    # Save back
+    df_combined.to_csv(output_file, index=False)
+else:
+    print(f"🆕 '{output_file}' not found — creating new file...")
+    df_new.to_csv(output_file, index=False)
