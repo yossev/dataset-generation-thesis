@@ -43,7 +43,7 @@ Examples of what to include:
 IMPORTANT RULES:
 - The snippet should look like real production code (not toy examples).
 - Make the issue subtle — not always obvious at first glance.
-- If it’s a defect, make it something that compiles but behaves incorrectly.
+- If it’s a defect, make it something that **compiles successfully but fails catastrophically or does not work at runtime** (e.g., hangs, crashes, produces nonsense).
 - Do NOT fix the problem or comment about it.
 - Avoid any explanations or prose.
 - Output must be **strict JSON only**, no markdown or code fences.
