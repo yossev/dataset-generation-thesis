@@ -70,7 +70,7 @@ COLUMNS = [
     "model",
 ]
 
-for i in range(100):
+for i in range(4):
     chosen_lang = random.choice(languages)
     model_name = models[i % len(models)]
     prompt = get_prompt_with_lang(chosen_lang)
