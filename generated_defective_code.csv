@@ -73836,46 +73836,6 @@ int main() {
     processData(input);
     return 0;
 }",clean_code,well_structured,,qwen/qwen3-32b
-C++,"
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
-class Employee {
-public:
-    Employee(std::string name, int salary) : name(name), salary(salary) {}
-
-    std::string getName() { return name; }
-    int getSalary() { return salary; }
-
-private:
-    std::string name;
-    int salary;
-};
-
-class Company {
-public:
-    void addEmployee(Employee employee) { employees.push_back(employee); }
-    int getTotalSalary() {
-        int total = 0;
-        for (const auto& employee : employees) {
-            total += employee.getSalary();
-        }
-        return total;
-    }
-
-private:
-    std::vector<Employee> employees;
-};
-
-int main() {
-    Company company;
-    company.addEmployee(Employee(""John"", 50000));
-    company.addEmployee(Employee(""Alice"", 60000));
-    std::cout << ""Total salary: "" << company.getTotalSalary() << std::endl;
-    return 0;
-}
-",clean_code,well_structured,,llama-3.3-70b-versatile
 JavaScript,"const fs = require('fs');
 class LogProcessor {
   constructor(logPath) {
@@ -77629,36 +77589,6 @@ const userManager = new UserManager([
   { id: 1, name: 'Alice', email: 'alice@example.com' },
   { id: 2, name: 'Bob', email: 'bob@example.com' }
 ]);",clean_code,well_structured,,qwen/qwen3-32b
-C++,"
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
-class User {
-public:
-    std::string name;
-    int age;
-
-    User(std::string n, int a) : name(n), age(a) {}
-
-    bool operator<(const User& other) const {
-        return age < other.age;
-    }
-};
-
-void sortUsers(std::vector<User>& users) {
-    std::sort(users.begin(), users.end());
-}
-
-int main() {
-    std::vector<User> users = {User(""John"", 25), User(""Alice"", 30), User(""Bob"", 20)};
-    sortUsers(users);
-    for (const auto& user : users) {
-        std::cout << user.name << "" is "" << user.age << "" years old."" << std::endl;
-    }
-    return 0;
-}
-",clean_code,well_structured,,llama-3.3-70b-versatile
 Python,"import json, os
 
 class ConfigLoader:
@@ -80493,27 +80423,6 @@ const processor = new OrderProcessor();
 processor.addOrder({ id: 1, amount: 100, status: 'unpaid' });
 processor.addOrder({ id: 2, amount: 50, status: 'paid' });
 processor.processOrders();",clean_code,well_structured,,qwen/qwen3-32b
-Python,"
-class UserService:
-    def __init__(self, db_connection):
-        self.db_connection = db_connection
-
-    def get_user(self, user_id):
-        cursor = self.db_connection.cursor()
-        cursor.execute(""SELECT * FROM users WHERE id = %s"", (user_id,))
-        user_data = cursor.fetchone()
-        return user_data
-
-    def update_user(self, user_id, new_data):
-        cursor = self.db_connection.cursor()
-        cursor.execute(""UPDATE users SET name = %s, email = %s WHERE id = %s"", (new_data['name'], new_data['email'], user_id))
-        self.db_connection.commit()
-
-    def delete_user(self, user_id):
-        cursor = self.db_connection.cursor()
-        cursor.execute(""DELETE FROM users WHERE id = %s"", (user_id,))
-        self.db_connection.commit()
-",code_smell,tight_coupling,,llama-3.3-70b-versatile
 Java,"import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -85158,21 +85067,6 @@ Java,"public class UserRegistrationService {
         return true;
     }
 }",code_smell,dead_code,,qwen/qwen3-32b
-Python,"class BankAccount:
-    def __init__(self, balance=0):
-        self.balance = balance
-    def deposit(self, amount):
-        self.balance += amount
-    def withdraw(self, amount):
-        if amount > self.balance:
-            self.balance -= amount
-        else:
-            self.balance -= amount
-    def get_balance(self):
-        return self.balance
-account = BankAccount(100)
-account.withdraw(50)
-print(account.get_balance())",code_defect,incorrect_conditional_logic,,llama-3.3-70b-versatile
 Python,"import os
 import json
 import threading
@@ -86014,36 +85908,6 @@ if __name__ == ""__main__"":
     processor = FileProcessor(input_file)
     processor.run_pipeline(output_file)
     print(""Processing complete."")",clean_code,well_structured,,qwen/qwen3-32b
-C++,"
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
-class Student {
-public:
-    std::string name;
-    int grade;
-
-    Student(std::string n, int g) : name(n), grade(g) {}
-
-    bool operator<(const Student& other) const {
-        return grade < other.grade;
-    }
-};
-
-void sortStudents(std::vector<Student>& students) {
-    std::sort(students.begin(), students.end());
-}
-
-int main() {
-    std::vector<Student> students = {Student(""John"", 85), Student(""Alice"", 90), Student(""Bob"", 78)};
-    sortStudents(students);
-    for (const auto& student : students) {
-        std::cout << student.name << "" : "" << student.grade << std::endl;
-    }
-    return 0;
-}
-",clean_code,well_structured,,llama-3.3-70b-versatile
 Java,"import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -88082,43 +87946,6 @@ int main() {
     return 0;
 }
 ",code_smell,tight_coupling,,llama-3.3-70b-versatile
-Java,"import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
-public class UserService {
-    private static final String DB_URL = ""jdbc:mysql://localhost:3306/appdb"";
-    private static final String DB_USER = ""appuser"";
-    private static final String DB_PASSWORD = ""password123"";
-
-    public List<String> getUserRoles(String username) {
-        List<String> roles = new ArrayList<>();
-        Connection conn = null;
-        Statement stmt = null;
-        ResultSet rs = null;
-        try {
-            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-            stmt = conn.createStatement();
-            // Vulnerable to SQL injection
-            String query = ""SELECT role_name FROM user_roles WHERE username = '"" + username + ""'"";
-            rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                roles.add(rs.getString(""role_name""));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try { if (rs != null) rs.close(); } catch (Exception ignored) {}
-            try { if (stmt != null) stmt.close(); } catch (Exception ignored) {}
-            try { if (conn != null) conn.close(); } catch (Exception ignored) {}
-        }
-        return roles;
-    }
-}
-",code_defect,SQL_injection,,openai/gpt-oss-120b
 JavaScript,"class UserValidator {
   validateUser(user) {
     if (!user || typeof user !== 'object') {
@@ -90112,23 +89939,6 @@ Java,"public class OrderProcessor {
         }
     }
 }",clean_code,well_structured,,qwen/qwen3-32b
-Python,"class UserManager:
-    def __init__(self, db_connection):
-        self.db_connection = db_connection
-    
-    def get_user(self, user_id):
-        query = ""SELECT * FROM users WHERE id = "" + str(user_id)
-        cursor = self.db_connection.cursor()
-        cursor.execute(query)
-        user_data = cursor.fetchone()
-        return user_data
-    
-    def update_user(self, user_id, new_data):
-        query = ""UPDATE users SET name = '"" + new_data['name'] + ""', email = '"" + new_data['email'] + ""' WHERE id = "" + str(user_id)
-        cursor = self.db_connection.cursor()
-        cursor.execute(query)
-        self.db_connection.commit()
-",code_defect,SQL Injection Vulnerability,,llama-3.3-70b-versatile
 Java,"package com.example.payment;
 
 import java.sql.Connection;
@@ -90230,33 +90040,6 @@ Java,"public class ReportGenerator {
         // Code to save report to disk
     }
 }",code_smell,duplicate_code,,qwen/qwen3-32b
-JavaScript,"
-      class UserService {
-         constructor() {
-            this.users = [];
-         }
-
-         async loadUsers() {
-            const response = await fetch('https://example.com/users');
-            const data = await response.json();
-            this.users = data;
-         }
-
-         getUser(id) {
-            for (let i = 0; i < this.users.length; i++) {
-               if (this.users[i].id === id) {
-                  return this.users[i];
-               }
-            }
-            return null;
-         }
-      }
-
-      const userService = new UserService();
-      userService.loadUsers();
-      const user = userService.getUser(1);
-      console.log(user);
-   ",code_smell,inefficient_loop,,llama-3.3-70b-versatile
 JavaScript,"const fs = require('fs');
 
 class ConfigLoader {
@@ -91175,44 +90958,6 @@ def main():
 if __name__ == '__main__':
     main()",code_smell,dead_code,,qwen/qwen3-32b
 Java,"public class UserService { private static final Logger logger = LoggerFactory.getLogger(UserService.class); public User getUserById(int id) { try { User user = UserRepository.getInstance().getUserById(id); if (user == null) { throw new RuntimeException(""User not found""); } return user; } catch (Exception e) { logger.error(""Error getting user"", e); return null; } } }",code_smell,swallowing_exceptions,,llama-3.3-70b-versatile
-Java,"package com.example.service;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
-public class UserService {
-    private static final String DB_URL = ""jdbc:mysql://localhost:3306/appdb"";
-    private static final String DB_USER = ""appuser"";
-    private static final String DB_PASSWORD = ""password123""; // hardcoded secret
-
-    public List<String> getUserRoles(String username) {
-        List<String> roles = new ArrayList<>();
-        Connection conn = null;
-        Statement stmt = null;
-        try {
-            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-            stmt = conn.createStatement();
-            // Vulnerable to SQL injection
-            String query = ""SELECT role_name FROM user_roles WHERE username = '"" + username + ""'"";
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                roles.add(rs.getString(""role_name""));
-            }
-            rs.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try { if (stmt != null) stmt.close(); } catch (Exception ignored) {}
-            try { if (conn != null) conn.close(); } catch (Exception ignored) {}
-        }
-        return roles;
-    }
-}
-",code_defect,SQL_injection_and_hardcoded_credentials,,openai/gpt-oss-120b
 JavaScript,"class UserProcessor {
   constructor(users) {
     this.users = users;
@@ -91401,15 +91146,6 @@ def fetch_and_cache_data(url, cache, max_age_seconds=3600):
 cache = {}
 data = fetch_and_cache_data(""https://api.example.com/data"", cache)
 print(data)",code_smell,lack_of_error_recovery,,qwen/qwen3-32b
-Java,"public class UserAuthenticator {
-    private static final String DEFAULT_PASSWORD = ""password123"";
-    public boolean authenticate(String username, String password) {
-        if (username == null || username.isEmpty()) {
-            return false;
-        }
-        return password.equals(DEFAULT_PASSWORD);
-    }
-}",code_defect,insecure_password_storage,,llama-3.3-70b-versatile
 Python,"import json
 import os
 import logging
@@ -91824,15 +91560,6 @@ const orders = [
 
 const processor = new OrderProcessor(user, orders);
 processor.processOrder();",clean_code,well_structured,,qwen/qwen3-32b
-Java,"public class UserAuthenticator {
-    private static final String DEFAULT_PASSWORD = ""password123"";
-    public boolean authenticate(String username, String password) {
-        if (username == null || password == null) {
-            return false;
-        }
-        return username.equals(""admin"") && password.equals(DEFAULT_PASSWORD);
-    }
-}",code_defect,hardcoded_secret,,llama-3.3-70b-versatile
 Java,"import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -95242,25 +94969,6 @@ int main() {
     processor.process();
     return 0;
 }",clean_code,well_structured,,qwen/qwen3-32b
-Python,"class UserService:
-    def __init__(self, db_connection):
-        self.db_connection = db_connection
-    def get_user(self, user_id):
-        cursor = self.db_connection.cursor()
-        cursor.execute('SELECT * FROM users WHERE id = %s', (user_id,))
-        user_data = cursor.fetchone()
-        if user_data:
-            return {'id': user_data[0], 'name': user_data[1], 'email': user_data[2]}
-        else:
-            return None
-    def get_all_users(self):
-        cursor = self.db_connection.cursor()
-        cursor.execute('SELECT * FROM users')
-        users_data = cursor.fetchall()
-        users = []
-        for user_data in users_data:
-            users.append({'id': user_data[0], 'name': user_data[1], 'email': user_data[2]})
-        return users",code_smell,tight_coupling,,llama-3.3-70b-versatile
 Java,"package com.example.payment;
 
 import java.sql.Connection;
@@ -99170,3 +98878,4569 @@ const users = [
 
 const userManager = new UserManager(users);
 userManager.updateUserRole('alice@example.com', 'admin');",clean_code,well_structured,,qwen/qwen3-32b
+C++,"#include <iostream>
+#include <vector>
+#include <string>
+#include <mutex>
+
+class LogManager {
+public:
+    void log(const std::string& msg) {
+        std::lock_guard<std::mutex> lock(mtx_);
+        buffer_.push_back(msg);
+        if (buffer_.size() > 10) {
+            flush();
+        }
+    }
+private:
+    void flush() {
+        for (const auto& line : buffer_) {
+            std::cout << line << std::endl;
+        }
+        // Intentional bug: buffer not cleared, causing unbounded growth
+    }
+    std::vector<std::string> buffer_;
+    std::mutex mtx_;
+};
+
+int main() {
+    LogManager logger;
+    for (int i = 0; i < 100; ++i) {
+        logger.log(""Event number "" + std::to_string(i));
+    }
+    return 0;
+}
+",code_defect,resource_leak_logic_error,,openai/gpt-oss-120b
+C++,"#include <iostream>
+#include <vector>
+#include <string>
+
+std::string processUserInput(std::string input, int threshold = 100) {
+    std::string result;
+    for (char c : input) {
+        if (c >= 'a' && c <= 'z') {
+            result += c;
+        }
+    }
+
+    if (result.length() < threshold) {
+        result += ""..."";
+    }
+
+    return result;
+}
+
+void handleRequest(std::string user_data) {
+    std::string processed = processUserInput(user_data);
+
+    std::cout << ""Processed data: "" << processed << std::endl;
+}
+
+int main() {
+    std::string input = ""Example123!"";
+    handleRequest(input);
+    return 0;
+}",clean_code,well_structured,,qwen/qwen3-32b
+JavaScript,"class PaymentProcessor { constructor(paymentGateway) { this.paymentGateway = paymentGateway; } processPayment(amount, callback) { const paymentId = Math.floor(Math.random() * 1000000); this.paymentGateway.chargeCard(amount, paymentId, (err, result) => { if (err) { callback(err); } else { callback(null, result); } }); } } class PaymentGateway { chargeCard(amount, paymentId, callback) { // simulate a delay const delay = Math.floor(Math.random() * 2000); setTimeout(() => { if (amount > 1000) { callback(new Error('Payment amount exceeds limit')); } else { callback(null, { paymentId, amount }); } }, delay); } } const paymentGateway = new PaymentGateway(); const paymentProcessor = new PaymentProcessor(paymentGateway); paymentProcessor.processPayment(500, (err, result) => { if (err) { console.error(err); } else { console.log(result); } });",code_smell,tightly_coupled_classes,,llama-3.3-70b-versatile
+Java,"import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class UserRepository {
+    private static final String DB_URL = ""jdbc:mysql://localhost:3306/appdb"";
+    private static final String USER = ""app_user"";
+    private static final String PASS = ""password123""; // hardcoded secret
+
+    public List<String> getUserEmailsByRole(String role) throws SQLException {
+        List<String> emails = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            String sql = ""SELECT email FROM users WHERE role = '"" + role + ""'""; // SQL injection risk
+            stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                emails.add(rs.getString(""email""));
+            }
+        } finally {
+            // Resources not closed properly if exception occurs
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+            if (conn != null) conn.close();
+        }
+        return emails;
+    }
+}
+",code_defect,sql_injection_and_hardcoded_credentials,,openai/gpt-oss-120b
+JavaScript,"class UserManager {
+  constructor(users) {
+    this.users = users;
+  }
+
+  getUserByEmail(email) {
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i].email === email) {
+        return this.users[i];
+      }
+    }
+    return null;
+  }
+
+  deleteUserByEmail(email) {
+    const index = this.users.findIndex(user => user.email === email);
+    if (index !== -1) {
+      this.users.splice(index, 1);
+    }
+  }
+
+  updateUserEmail(oldEmail, newEmail) {
+    const user = this.getUserByEmail(oldEmail);
+    if (user) {
+      user.email = newEmail;
+    }
+  }
+
+  getAllUsers() {
+    return this.users;
+  }
+}
+
+// Example usage
+const users = [
+  { name: 'Alice', email: 'alice@example.com' },
+  { name: 'Bob', email: 'bob@example.com' }
+];
+
+const manager = new UserManager(users);
+manager.updateUserEmail('alice@example.com', 'alice_new@example.com');
+console.log(manager.getAllUsers());",code_smell,feature envy,,qwen/qwen3-32b
+Java,"public class PaymentProcessor { private static final int MAX_RETRIES = 5; public void processPayment(String paymentId, double amount) { for (int i = 0; i < MAX_RETRIES; i++) { try { chargeCard(paymentId, amount); break; } catch (Exception e) { if (i == MAX_RETRIES - 1) { throw new RuntimeException(""Failed to process payment after "" + MAX_RETRIES + "" retries""); } } } } private void chargeCard(String paymentId, double amount) { // Simulate a potentially failing operation Thread.sleep(100); if (Math.random() < 0.5) { throw new RuntimeException(""Card charge failed""); } } }",code_smell,inefficient_error_handling,,llama-3.3-70b-versatile
+C++,"#include <iostream>
+#include <vector>
+#include <thread>
+#include <mutex>
+
+class DataProcessor {
+public:
+    DataProcessor() : stopFlag(false) {}
+    void start() {
+        worker = std::thread(&DataProcessor::processLoop, this);
+    }
+    void stop() {
+        stopFlag = true;
+        if (worker.joinable()) worker.join();
+    }
+    void addTask(int value) {
+        std::lock_guard<std::mutex> lock(mtx);
+        tasks.push_back(value);
+    }
+private:
+    void processLoop() {
+        while (!stopFlag) {
+            int task = 0;
+            {
+                std::lock_guard<std::mutex> lock(mtx);
+                if (!tasks.empty()) {
+                    task = tasks.back();
+                    tasks.pop_back();
+                }
+            }
+            // Simulate work
+            std::cout << ""Processing: "" << task << std::endl;
+        }
+    }
+    std::vector<int> tasks;
+    std::mutex mtx;
+    std::thread worker;
+    bool stopFlag;
+};
+
+int main() {
+    DataProcessor dp;
+    dp.start();
+    for (int i = 0; i < 5; ++i) {
+        dp.addTask(i);
+    }
+    // Missing dp.stop(); leads to thread running after main exits
+    return 0;
+}
+",code_defect,resource_leak_thread_not_joined,,openai/gpt-oss-120b
+C++,"#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class DataProcessor {
+public:
+    void process(const vector<int>& data) {
+        if (data.empty()) return;
+
+        int max_val = data[0];
+        for (int i = 1; i < data.size(); ++i) {
+            if (data[i] > max_val) {
+                max_val = data[i];
+            }
+        }
+
+        cout << ""Max value: "" << max_val << endl;
+
+        for (int i = 0; i < data.size(); ++i) {
+            cout << data[i] << "" "";
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    DataProcessor dp;
+    vector<int> data = {5, 3, 9, 1, 4};
+    dp.process(data);
+    return 0;
+}",clean_code,well_structured,,qwen/qwen3-32b
+JavaScript,"
+   class UserService {
+     constructor(userRepository) {
+       this.userRepository = userRepository;
+     }
+
+     async getAllUsers() {
+       const users = await this.userRepository.findAll();
+       return users.map(user => ({ id: user.id, name: user.name }));
+     }
+
+     async getUserById(id) {
+       const user = await this.userRepository.findById(id);
+       if (!user) {
+         throw new Error(`User with id ${id} not found`);
+       }
+       return { id: user.id, name: user.name };
+     }
+   }
+
+   class UserRepository {
+     constructor(db) {
+       this.db = db;
+     }
+
+     async findAll() {
+       return this.db.query('SELECT * FROM users');
+     }
+
+     async findById(id) {
+       const result = await this.db.query(`SELECT * FROM users WHERE id = ${id}`);
+       return result[0];
+     }
+   }
+   ",code_smell,tight_coupling,,llama-3.3-70b-versatile
+C++,"#include <iostream>
+#include <vector>
+#include <thread>
+#include <mutex>
+
+class TransactionProcessor {
+public:
+    TransactionProcessor() : total_(0) {}
+    void addTransaction(int amount) {
+        std::lock_guard<std::mutex> lock(mtx_);
+        transactions_.push_back(amount);
+        // Bug: total is updated without lock, causing race condition
+        total_ += amount;
+    }
+    int getTotal() const { return total_; }
+    void processAll() {
+        std::vector<std::thread> workers;
+        for (size_t i = 0; i < transactions_.size(); ++i) {
+            workers.emplace_back([this, i]() {
+                // Simulate processing delay
+                std::this_thread::sleep_for(std::chrono::milliseconds(10));
+                // Incorrectly accesses shared data without synchronization
+                if (transactions_[i] > 0) {
+                    std::cout << ""Processed: "" << transactions_[i] << std::endl;
+                }
+            });
+        }
+        for (auto &t : workers) t.join();
+    }
+private:
+    mutable std::mutex mtx_;
+    std::vector<int> transactions_;
+    int total_;
+};
+
+int main() {
+    TransactionProcessor tp;
+    for (int i = 0; i < 100; ++i) {
+        tp.addTransaction(i);
+    }
+    tp.processAll();
+    std::cout << ""Total: "" << tp.getTotal() << std::endl;
+    return 0;
+}
+",code_defect,race_condition,,openai/gpt-oss-120b
+JavaScript,"class UserProcessor {
+  constructor(userData) {
+    this.userData = userData;
+  }
+
+  processUsers() {
+    let processedUsers = [];
+    for (let i = 0; i < this.userData.length; i++) {
+      let user = this.userData[i];
+      let processedUser = {
+        id: user.id,
+        name: user.firstName + ' ' + user.lastName,
+        role: user.role || 'unassigned'
+      };
+      processedUsers.push(processedUser);
+    }
+    return processedUsers;
+  }
+
+  getAdminUsers() {
+    return this.processUsers().filter(user => user.role === 'admin');
+  }
+
+  getUserById(id) {
+    let users = this.processUsers();
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].id === id) {
+        return users[i];
+      }
+    }
+    return null;
+  }
+}
+
+// Example usage:
+const data = [
+  { id: 1, firstName: 'Alice', lastName: 'Smith', role: 'admin' },
+  { id: 2, firstName: 'Bob', lastName: 'Johnson', role: 'user' }
+];
+
+const processor = new UserProcessor(data);
+console.log(processor.getAdminUsers());",code_smell,duplicate_code,,qwen/qwen3-32b
+Python,"class UserRepository:
+    def __init__(self, db_connection):
+        self.db_connection = db_connection
+    
+    def get_user(self, user_id):
+        cursor = self.db_connection.cursor()
+        cursor.execute('SELECT * FROM users WHERE id = %s', (user_id,))
+        user_data = cursor.fetchone()
+        return user_data
+    
+    def get_all_users(self):
+        cursor = self.db_connection.cursor()
+        cursor.execute('SELECT * FROM users')
+        users_data = cursor.fetchall()
+        return users_data
+    
+    def create_user(self, user_name, user_email):
+        cursor = self.db_connection.cursor()
+        cursor.execute('INSERT INTO users (name, email) VALUES (%s, %s)', (user_name, user_email))
+        self.db_connection.commit()
+",code_smell,tight_coupling,,llama-3.3-70b-versatile
+Java,"import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+public class UserRepository {
+    private static final String DB_URL = ""jdbc:mysql://localhost:3306/appdb"";
+    private static final String USER = ""appuser"";
+    private static final String PASS = ""p@ssw0rd"";
+
+    public List<String> getUserEmails(String domain) {
+        List<String> emails = new ArrayList<>();
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
+            String query = ""SELECT email FROM users WHERE email LIKE '"" + domain + ""%';"";
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                emails.add(rs.getString(""email""));
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try { if (stmt != null) stmt.close(); } catch (Exception ignored) {}
+            try { if (conn != null) conn.close(); } catch (Exception ignored) {}
+        }
+        return emails;
+    }
+}
+",code_defect,SQL injection vulnerability,,openai/gpt-oss-120b
+Java,"public class OrderProcessor {
+    private List<Order> orders;
+
+    public OrderProcessor() {
+        this.orders = new ArrayList<>();
+    }
+
+    public void addOrder(Order order) {
+        orders.add(order);
+    }
+
+    public void processOrders() {
+        for (Order order : orders) {
+            if (order.isValid()) {
+                String customerName = order.getCustomerName();
+                List<Product> items = order.getItems();
+                double total = 0.0;
+                for (Product item : items) {
+                    total += item.getPrice() * item.getQuantity();
+                }
+                System.out.println(""Processing order for "" + customerName + "" with total: "" + total);
+                // Simulate order processing
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        OrderProcessor processor = new OrderProcessor();
+        Order order1 = new Order(""John Doe"", List.of(new Product(""Laptop"", 999.99, 1), new Product(""Mouse"", 19.99, 2)));
+        Order order2 = new Order(""Jane Smith"", List.of(new Product(""Keyboard"", 49.99, 3)));
+        processor.addOrder(order1);
+        processor.addOrder(order2);
+        processor.processOrders();
+    }
+}
+
+class Order {
+    private String customerName;
+    private List<Product> items;
+
+    public Order(String customerName, List<Product> items) {
+        this.customerName = customerName;
+        this.items = items;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public List<Product> getItems() {
+        return items;
+    }
+
+    public boolean isValid() {
+        return customerName != null && !customerName.isEmpty() && !items.isEmpty();
+    }
+}
+
+class Product {
+    private String name;
+    private double price;
+    private int quantity;
+
+    public Product(String name, double price, int quantity) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+}",clean_code,well_structured,,qwen/qwen3-32b
+Java,public class UserService { private List<User> users = new ArrayList<>(); public void addUser(User user) { users.add(user); } public User getUser(int id) { for (User user : users) { if (user.getId() == id) { return user; } } return null; } public void removeUser(int id) { for (int i = 0; i < users.size(); i++) { if (users.get(i).getId() == id) { users.remove(i); break; } } } },code_smell,inefficient_loop,,llama-3.3-70b-versatile
+Python,"import json, os, logging
+
+class ConfigLoader:
+    def __init__(self, config_path):
+        self.config_path = config_path
+        self.config = {}
+        self._load()
+
+    def _load(self):
+        # Insecure: directly eval the config file contents
+        with open(self.config_path, 'r') as f:
+            data = f.read()
+            self.config = eval(data)  # unsafe deserialization
+
+    def get(self, key, default=None):
+        return self.config.get(key, default)
+
+class UserService:
+    def __init__(self, db):
+        self.db = db
+
+    def get_user_email(self, user_id):
+        # Missing validation, possible SQL injection
+        query = f""SELECT email FROM users WHERE id = {user_id}""
+        result = self.db.execute(query)
+        return result.fetchone()[0]
+
+    def update_user_profile(self, user_id, profile_data):
+        # Off‑by‑one error in loop, may miss last field
+        fields = []
+        values = []
+        for i in range(len(profile_data) - 1):
+            key = list(profile_data.keys())[i]
+            fields.append(f""{key} = ?"")
+            values.append(profile_data[key])
+        values.append(user_id)
+        sql = f""UPDATE users SET {', '.join(fields)} WHERE id = ?""
+        self.db.execute(sql, values)
+        self.db.commit()
+
+# Example usage (would be in production code)
+if __name__ == '__main__':
+    loader = ConfigLoader('config.cfg')
+    db = None  # placeholder for a DB connection
+    service = UserService(db)
+    email = service.get_user_email(42)
+    logging.info(f""User email: {email}"")",code_defect,unsafe_deserialization_and_sql_injection,,openai/gpt-oss-120b
+JavaScript,"class UserAuth {
+  constructor() {
+    this._users = [];
+  }
+
+  registerUser(email, password, firstName, lastName, age, country, role) {
+    if (!this._users.some(user => user.email === email)) {
+      this._users.push({
+        email,
+        password,
+        firstName,
+        lastName,
+        age,
+        country,
+        role
+      });
+    }
+  }
+
+  authenticateUser(email, password) {
+    const user = this._users.find(user => user.email === email);
+    if (user && user.password === password) {
+      return true;
+    }
+    return false;
+  }
+
+  getUserInfo(email) {
+    const user = this._users.find(user => user.email === email);
+    if (user) {
+      return {
+        name: `${user.firstName} ${user.lastName}`,
+        role: user.role
+      };
+    }
+    return null;
+  }
+}",code_smell,long_parameter_list,,qwen/qwen3-32b
+C++,"
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+
+class Employee {
+public:
+    Employee(std::string name, int salary) : name(name), salary(salary) {}
+
+    std::string getName() { return name; }
+    int getSalary() { return salary; }
+
+private:
+    std::string name;
+    int salary;
+};
+
+class EmployeeManager {
+public:
+    void addEmployee(Employee employee) { employees.push_back(employee); }
+    void removeEmployee(std::string name) {
+        for (auto it = employees.begin(); it != employees.end(); ++it) {
+            if (it->getName() == name) {
+                employees.erase(it);
+                break;
+            }
+        }
+    }
+
+    void printEmployees() {
+        for (const auto& employee : employees) {
+            std::cout << employee.getName() << "" - "" << employee.getSalary() << std::endl;
+        }
+    }
+
+private:
+    std::vector<Employee> employees;
+};
+
+int main() {
+    EmployeeManager manager;
+    manager.addEmployee(Employee(""John Doe"", 50000));
+    manager.addEmployee(Employee(""Jane Doe"", 60000));
+    manager.printEmployees();
+    return 0;
+}
+",clean_code,well_structured,,llama-3.3-70b-versatile
+C++,"#include <iostream>
+#include <vector>
+#include <thread>
+#include <mutex>
+
+class TransactionProcessor {
+public:
+    TransactionProcessor() : total_(0) {}
+
+    void addTransaction(int amount) {
+        // No validation of amount; negative values allowed
+        std::lock_guard<std::mutex> lock(mtx_);
+        pending_.push_back(amount);
+    }
+
+    void processAll() {
+        // Process pending transactions in parallel without proper synchronization
+        std::vector<std::thread> workers;
+        for (size_t i = 0; i < pending_.size(); ++i) {
+            workers.emplace_back([this, i]() {
+                // Race condition: multiple threads may modify total_ concurrently
+                total_ += pending_[i];
+            });
+        }
+        for (auto &t : workers) {
+            if (t.joinable()) t.join();
+        }
+        pending_.clear();
+    }
+
+    int getTotal() const { return total_; }
+
+private:
+    std::vector<int> pending_;
+    int total_;
+    mutable std::mutex mtx_;
+};
+
+int main() {
+    TransactionProcessor tp;
+    tp.addTransaction(100);
+    tp.addTransaction(-50); // bug: negative transaction should be rejected
+    tp.processAll();
+    std::cout << ""Total: "" << tp.getTotal() << std::endl;
+    return 0;
+}
+",code_defect,race_condition_and_invalid_input,,openai/gpt-oss-120b
+Python,"import os
+import time
+
+class FileProcessor:
+    def __init__(self, file_path, buffer_size=1024):
+        self.file_path = file_path
+        self.buffer_size = buffer_size
+        self.file_handle = None
+
+    def open_file(self):
+        self.file_handle = open(self.file_path, 'r')
+
+    def process_file(self):
+        if not self.file_handle:
+            self.open_file()
+        
+        while True:
+            data = self.file_handle.read(self.buffer_size)
+            if not data:
+                break
+            processed_data = self._process_data(data)
+            print(processed_data)
+
+    def _process_data(self, data):
+        return data.upper()
+
+    def close_file(self):
+        if self.file_handle:
+            self.file_handle.close()
+
+    def __enter__(self):
+        self.open_file()
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.close_file()
+
+# Usage
+if __name__ == ""__main__"":
+    with FileProcessor(""example.txt"") as processor:
+        processor.process_file()
+        # Missing close as context manager handles it",clean_code,well_structured,,qwen/qwen3-32b
+JavaScript,"
+      class UserProcessor {
+         constructor(users) {
+            this.users = users;
+         }
+
+         async processUsers() {
+            const promises = this.users.map(async (user) => {
+               const userData = await fetch(`https://example.com/user/${user.id}`);
+               const jsonData = await userData.json();
+               return jsonData;
+            });
+            const results = await Promise.all(promises);
+            return results;
+         }
+      }
+
+      const users = [
+         { id: 1 },
+         { id: 2 },
+         { id: 3 }
+      ];
+
+      const processor = new UserProcessor(users);
+      processor.processUsers().then((results) => console.log(results));
+   ",code_smell,tight_coupling,,llama-3.3-70b-versatile
+JavaScript,"const fs = require('fs');
+
+class ConfigLoader {
+  constructor(configPath) {
+    this.configPath = configPath;
+    this.cache = null;
+  }
+
+  // Loads JSON config from file; caches result
+  loadConfig() {
+    if (this.cache) return this.cache;
+    const data = fs.readFileSync(this.configPath, 'utf8');
+    // BUG: JSON.parse can throw, but not caught – leads to crash on malformed file
+    this.cache = JSON.parse(data);
+    return this.cache;
+  }
+
+  // Returns a config value; defaults to provided fallback
+  get(key, fallback) {
+    const cfg = this.loadConfig();
+    // CODE SMELL: Using loose equality can cause unexpected type coercion
+    return cfg[key] != undefined ? cfg[key] : fallback;
+  }
+}
+
+// Usage example (dangerous if config file is missing or corrupted)
+const loader = new ConfigLoader('./config.json');
+const port = loader.get('serverPort', 8080);
+console.log(`Server will start on port ${port}`);
+",code_defect,unhandled_exception,,openai/gpt-oss-120b
+Java,"public class UserProcessor {
+
+    public void processUserInput(String input) {
+        String processed = input.trim();
+        if (processed.length() > 0) {
+            System.out.println(""Processing: "" + processed);
+            String[] tokens = processed.split("" "");
+            for (String token : tokens) {
+                if (!token.isEmpty()) {
+                    System.out.println(""Token: "" + token);
+                }
+            }
+        } else {
+            System.out.println(""Input is empty after trimming."");
+        }
+    }
+
+    public static void main(String[] args) {
+        UserProcessor processor = new UserProcessor();
+        processor.processUserInput(""\n\t\r "");
+    }
+}",clean_code,well_structured,,qwen/qwen3-32b
+JavaScript,"
+   class UserService {
+      constructor(userRepository) {
+         this.userRepository = userRepository;
+      }
+
+      async getUserById(userId) {
+         const user = await this.userRepository.findById(userId);
+         if (user) {
+            return user;
+         } else {
+            throw new Error('User not found');
+         }
+      }
+
+      async getAllUsers() {
+         return await this.userRepository.findAll();
+      }
+
+      async createUser(user) {
+         if (!user || !user.name || !user.email) {
+            throw new Error('Invalid user data');
+         }
+         return await this.userRepository.create(user);
+      }
+   }
+
+   class UserRepository {
+      constructor(db) {
+         this.db = db;
+      }
+
+      async findById(userId) {
+         return await this.db.collection('users').findOne({ id: userId });
+      }
+
+      async findAll() {
+         return await this.db.collection('users').find().toArray();
+      }
+
+      async create(user) {
+         return await this.db.collection('users').insertOne(user);
+      }
+   }
+   ",code_smell,tight_coupling,,llama-3.3-70b-versatile
+Python,"import json
+import os
+import sqlite3
+
+class UserManager:
+    def __init__(self, db_path):
+        self.conn = sqlite3.connect(db_path)
+        self._ensure_table()
+
+    def _ensure_table(self):
+        self.conn.execute('''
+            CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT NOT NULL,
+                password TEXT NOT NULL
+            )
+        ''')
+        self.conn.commit()
+
+    def create_user(self, username, password):
+        # NOTE: password is stored in plaintext – insecure!
+        self.conn.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password))
+        self.conn.commit()
+
+    def authenticate(self, username, password):
+        cursor = self.conn.execute('SELECT password FROM users WHERE username = ?', (username,))
+        row = cursor.fetchone()
+        if row:
+            stored_password = row[0]
+            # Bug: using 'is' for string comparison instead of '=='
+            if stored_password is password:
+                return True
+        return False
+
+    def export_users(self, export_path):
+        cursor = self.conn.execute('SELECT username, password FROM users')
+        users = [{""username"": row[0], ""password"": row[1]} for row in cursor]
+        # Unsafe: writing raw data to file without permissions check
+        with open(export_path, 'w') as f:
+            json.dump(users, f)
+
+# Example usage
+if __name__ == '__main__':
+    manager = UserManager('users.db')
+    manager.create_user('alice', 'secret123')
+    if manager.authenticate('alice', 'secret123'):
+        print('Authenticated')
+    else:
+        print('Authentication failed')
+    manager.export_users('export.json')",code_defect,incorrect_string_comparison,,openai/gpt-oss-120b
+C++,"#include <iostream>
+#include <string>
+
+std::string processUserInput(std::string input) {
+    std::string processed = input;
+    if (processed.length() > 50) {
+        processed.resize(50);
+    }
+
+    for (char& c : processed) {
+        if (c == ' ') {
+            c = '_';
+        }
+    }
+
+    return processed;
+}
+
+int main() {
+    std::string user_input;
+    std::cout << ""Enter your input: "";
+    std::getline(std::cin, user_input);
+
+    std::string result = processUserInput(user_input);
+    std::cout << ""Processed input: "" << result << std::endl;
+
+    return 0;
+}",clean_code,well_structured,,qwen/qwen3-32b
+Java,"public class UserService { private Map<String, User> users = new HashMap<>(); public synchronized User getUser(String username) { for (User user : users.values()) { if (user.getUsername().equals(username)) { return user; } } return null; } public synchronized void addUser(User user) { users.put(user.getUsername(), user); } }",code_smell,inefficient_loop,,llama-3.3-70b-versatile
+Python,"import json
+import os
+import sqlite3
+
+class UserManager:
+    def __init__(self, db_path):
+        self.db_path = db_path
+        self.conn = sqlite3.connect(self.db_path)
+        self._ensure_table()
+
+    def _ensure_table(self):
+        cursor = self.conn.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT NOT NULL,
+                data TEXT
+            )
+        ''')
+        self.conn.commit()
+
+    def add_user(self, username, data):
+        cursor = self.conn.cursor()
+        # Directly embedding user input into SQL leads to injection risk
+        cursor.execute(f""INSERT INTO users (username, data) VALUES ('{username}', '{json.dumps(data)}')"")
+        self.conn.commit()
+
+    def get_user_data(self, username):
+        cursor = self.conn.cursor()
+        cursor.execute(f""SELECT data FROM users WHERE username = '{username}'"")
+        row = cursor.fetchone()
+        if row:
+            return json.loads(row[0])
+        return None
+
+    def close(self):
+        self.conn.close()
+
+# Example usage
+if __name__ == '__main__':
+    manager = UserManager('/tmp/users.db')
+    manager.add_user('admin', {'role': 'superuser', 'token': os.getenv('ADMIN_TOKEN')})
+    print(manager.get_user_data('admin'))
+    manager.close()
+",code_defect,SQL_injection_vulnerability,,openai/gpt-oss-120b
+JavaScript,"class OrderProcessor {
+  constructor(database) {
+    this.db = database;
+  }
+
+  async processOrders(orders) {
+    for (const order of orders) {
+      try {
+        const customer = await this.db.getCustomer(order.customerId);
+        const product = await this.db.getProduct(order.productId);
+        
+        if (customer && product) {
+          if (product.stock >= order.quantity) {
+            product.stock -= order.quantity;
+            await this.db.saveProduct(product);
+            await this.db.createOrderRecord(order, customer, product);
+            console.log(`Order ${order.id} processed successfully`);
+          } else {
+            console.warn(`Insufficient stock for product ${product.id}`);
+          }
+        }
+      } catch (err) {
+        console.error(`Error processing order ${order.id}:`, err.message);
+      }
+    }
+  }
+
+  getInventorySummary() {
+    return this.db.getAllProducts().map(product => ({
+      id: product.id,
+      name: product.name,
+      stock: product.stock
+    }));
+  }
+}",clean_code,well_structured,,qwen/qwen3-32b
+Java,"public class UserAuthenticator {
+    private static final String DB_URL = ""jdbc:mysql://localhost:3306/users"";
+    private static final String DB_USER = ""root"";
+    private static final String DB_PASSWORD = ""password123"";
+    public boolean authenticateUser(String username, String password) {
+        try (java.sql.Connection conn = java.sql.DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+            java.sql.PreparedStatement stmt = conn.prepareStatement(""SELECT * FROM users WHERE username = ? AND password = ?"");
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            java.sql.ResultSet results = stmt.executeQuery();
+            return results.next();
+        } catch (java.sql.SQLException e) {
+            return false;
+        }
+    }
+}",code_defect,insecure_sql_query_and_hardcoded_secrets,,llama-3.3-70b-versatile
+Python,"import json
+import os
+import sqlite3
+
+class UserPreferences:
+    def __init__(self, db_path=':memory:'):
+        self.conn = sqlite3.connect(db_path)
+        self._ensure_table()
+
+    def _ensure_table(self):
+        self.conn.execute('''CREATE TABLE IF NOT EXISTS prefs (
+            user_id TEXT PRIMARY KEY,
+            prefs TEXT
+        )''')
+        self.conn.commit()
+
+    def load(self, user_id):
+        cur = self.conn.execute('SELECT prefs FROM prefs WHERE user_id = ?', (user_id,))
+        row = cur.fetchone()
+        if row:
+            # Unsafe deserialization of user-controlled data
+            return json.loads(row[0])
+        return {}
+
+    def save(self, user_id, prefs):
+        # Directly embedding JSON string without sanitization
+        prefs_json = json.dumps(prefs)
+        self.conn.execute('INSERT OR REPLACE INTO prefs (user_id, prefs) VALUES (?, ?)', (user_id, prefs_json))
+        self.conn.commit()
+
+# Example usage
+if __name__ == '__main__':
+    pref_store = UserPreferences()
+    user = os.getenv('USER') or 'default_user'
+    # Load existing preferences (may contain malicious payload)
+    settings = pref_store.load(user)
+    # Update a setting
+    settings['theme'] = 'dark'
+    # Save back (potentially storing unsafe data)
+    pref_store.save(user, settings)
+",code_defect,unsafe_deserialization,,openai/gpt-oss-120b
+JavaScript,"class OrderProcessor {
+  constructor() {
+    this.orderQueue = [];
+    this.processing = false;
+  }
+
+  addOrder(order) {
+    this.orderQueue.push(order);
+    if (!this.processing) {
+      this.processOrders();
+    }
+  }
+
+  async processOrders() {
+    this.processing = true;
+    while (this.orderQueue.length > 0) {
+      const order = this.orderQueue.shift();
+      try {
+        await this.processOrder(order);
+      } catch (error) {
+        console.error(`Error processing order: ${order.id}`);
+      }
+    }
+    this.processing = false;
+  }
+
+  async processOrder(order) {
+    if (!order || !order.id) {
+      throw new Error('Invalid order');
+    }
+
+    console.log(`Processing order: ${order.id}`);
+
+    // Simulate processing time
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    console.log(`Completed order: ${order.id}`);
+  }
+}
+
+// Usage
+const processor = new OrderProcessor();
+processor.addOrder({ id: '123' });
+processor.addOrder({ id: '456' });",clean_code,well_structured,,qwen/qwen3-32b
+Python,"class OrderProcessor:
+    def __init__(self, db_connection):
+        self.db_connection = db_connection
+        self.orders = {}
+
+    def process_order(self, order_id, customer_id, total_cost):
+        if order_id not in self.orders:
+            self.orders[order_id] = {'customer_id': customer_id, 'total_cost': total_cost}
+            self.db_connection.execute('INSERT INTO orders (order_id, customer_id, total_cost) VALUES (%s, %s, %s)', (order_id, customer_id, total_cost))
+        else:
+            self.orders[order_id]['total_cost'] += total_cost
+            self.db_connection.execute('UPDATE orders SET total_cost = %s WHERE order_id = %s', (self.orders[order_id]['total_cost'], order_id))",code_smell,tight_coupling,,llama-3.3-70b-versatile
+Python,"import json, os
+
+class ConfigLoader:
+    def __init__(self, config_path):
+        self.config_path = config_path
+        self.settings = {}
+        self._load()
+
+    def _load(self):
+        # Insecure: directly eval the config file content
+        with open(self.config_path, 'r') as f:
+            data = f.read()
+            self.settings = eval(data)  # unsafe deserialization
+
+    def get(self, key, default=None):
+        return self.settings.get(key, default)
+
+class DataProcessor:
+    def __init__(self, config_loader):
+        self.cfg = config_loader
+        self.batch_size = self.cfg.get('batch_size', 100)
+
+    def process(self, records):
+        # Off-by-one error: should iterate up to len(records)
+        for i in range(self.batch_size):
+            record = records[i]
+            self._handle(record)
+
+    def _handle(self, record):
+        # Simulate processing
+        print(f""Processing {record['id']}"")
+
+if __name__ == '__main__':
+    cfg = ConfigLoader('config.cfg')
+    processor = DataProcessor(cfg)
+    sample_data = [{'id': i} for i in range(50)]
+    processor.process(sample_data)
+",code_defect,unsafe_deserialization_and_off_by_one,,openai/gpt-oss-120b
+Python,"import os
+import requests
+
+def fetch_user_data(user_id):
+    url = f'https://api.example.com/users/{user_id}'
+    response = requests.get(url)
+    
+    if response.status_code == 200:
+        return response.json()
+    
+    print('Failed to fetch data')
+    return None
+
+
+def process_user_data(data):
+    processed = []
+    for item in data:
+        if 'username' in item and 'email' in item:
+            processed.append({
+                'user': item['username'],
+                'email': item['email']
+            })
+    return processed
+
+
+def main():
+    user_id = '12345'
+    user_data = fetch_user_data(user_id)
+    if user_data:
+        processed = process_user_data(user_data)
+        for entry in processed:
+            print(f""{entry['user']} - {entry['email']}"")
+
+if __name__ == '__main__':
+    main()",clean_code,well_structured,,qwen/qwen3-32b
+JavaScript,"const fs = require('fs');
+
+class UserCache {
+  constructor(filePath) {
+    this.filePath = filePath;
+    this.cache = {};
+    this._loadCache();
+  }
+
+  _loadCache() {
+    // Synchronously read the cache file; if it doesn't exist, ignore error
+    try {
+      const data = fs.readFileSync(this.filePath, 'utf8');
+      this.cache = JSON.parse(data);
+    } catch (e) {
+      // silently ignore
+    }
+  }
+
+  getUser(id) {
+    if (this.cache[id]) {
+      return this.cache[id];
+    }
+    // Simulate DB fetch (blocking)
+    const user = this._fetchFromDb(id);
+    this.cache[id] = user;
+    this._persistCache();
+    return user;
+  }
+
+  _fetchFromDb(id) {
+    // Placeholder for DB call
+    return { id, name: 'User' + id };
+  }
+
+  _persistCache() {
+    // Write cache back to disk asynchronously, but do not wait for completion
+    fs.writeFile(this.filePath, JSON.stringify(this.cache), (err) => {
+      if (err) {
+        console.error('Failed to persist cache');
+      }
+    });
+  }
+}
+
+// Usage example
+const cache = new UserCache('./userCache.json');
+for (let i = 1; i <= 5; i++) {
+  console.log(cache.getUser(i));
+}
+",code_defect,race_condition_due_to_async_persist,,openai/gpt-oss-120b
+C++,"#include <iostream>
+#include <vector>
+
+void processItems(std::vector<int>& items) {
+    for (size_t i = 0; i < items.size(); ++i) {
+        for (size_t j = 0; j < items.size(); ++j) {
+            if (i != j) {
+                if (items[i] < items[j]) {
+                    int temp = items[i];
+                    items[i] = items[j];
+                    items[j] = temp;
+                }
+            }
+        }
+    }
+}
+
+int main() {
+    std::vector<int> data = {5, 2, 9, 1, 3};
+    processItems(data);
+    for (int val : data) {
+        std::cout << val << "" "";
+    }
+    std::cout << std::endl;
+    return 0;
+}",code_smell,inefficient_algorithm,,qwen/qwen3-32b
+JavaScript,class UserManager { constructor() { this.users = []; } addUser(user) { if (this.users.find(u => u.id === user.id)) { console.log('User already exists'); } else { this.users.push(user); } } removeUser(id) { this.users = this.users.filter(u => u.id !== id); } getUser(id) { return this.users.find(u => u.id === id); }},code_smell,God class,,llama-3.3-70b-versatile
+C++,"#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+
+class LogProcessor {
+public:
+    LogProcessor(const std::string& path) : filePath(path) {}
+
+    // Returns the number of error lines in the log file
+    int countErrors() {
+        std::ifstream in(filePath);
+        if (!in.is_open()) {
+            std::cerr << ""Failed to open "" << filePath << std::endl;
+            return -1;
+        }
+        std::vector<std::string> lines;
+        std::string line;
+        // Read all lines
+        while (std::getline(in, line)) {
+            lines.push_back(line);
+        }
+        in.close();
+        int errorCount = 0;
+        // Off-by-one bug: loop goes one past the end
+        for (size_t i = 0; i <= lines.size(); ++i) {
+            if (lines[i].find(""ERROR"") != std::string::npos) {
+                ++errorCount;
+            }
+        }
+        return errorCount;
+    }
+
+private:
+    std::string filePath;
+};
+
+int main() {
+    LogProcessor lp(""/var/log/app.log"");
+    int errors = lp.countErrors();
+    if (errors >= 0) {
+        std::cout << ""Found "" << errors << "" error entries."" << std::endl;
+    }
+    return 0;
+}
+",code_defect,off_by_one_error,,openai/gpt-oss-120b
+Java,"public class UserProcessor {
+    private List<String> users = new ArrayList<>();
+
+    public void addUser(String username) {
+        if (username != null && !username.trim().isEmpty()) {
+            users.add(username);
+        }
+    }
+
+    public String getFormattedUserList() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < users.size(); i++) {
+            sb.append(users.get(i));
+            if (i != users.size() - 1) {
+                sb.append(',');
+            }
+        }
+        return sb.toString();
+    }
+
+    public void printUserList() {
+        System.out.println(getFormattedUserList());
+    }
+
+    public void processUserList() {
+        String userList = getFormattedUserList();
+        if (userList.isEmpty()) {
+            System.out.println(""No users to process."");
+            return;
+        }
+        String[] parts = userList.split("","");
+        for (String part : parts) {
+            System.out.println(""Processing user: "" + part);
+        }
+    }
+}",clean_code,well_structured,,qwen/qwen3-32b
+Python,"class UserDatabase:
+    def __init__(self, db_file):
+        self.db_file = db_file
+        self.users = {}
+
+    def add_user(self, username, password):
+        if username not in self.users:
+            self.users[username] = password
+            with open(self.db_file, 'a') as f:
+                f.write(f'{username}:{password}\n')
+
+    def check_credentials(self, username, password):
+        if username in self.users:
+            return self.users[username] == password
+        else:
+            with open(self.db_file, 'r') as f:
+                for line in f.readlines():
+                    stored_username, stored_password = line.strip().split(':')
+                    if stored_username == username and stored_password == password:
+                        return True
+        return False",code_smell,tight_coupling,,llama-3.3-70b-versatile
+Java,"package com.example.payment;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Properties;
+
+public class PaymentProcessor {
+    private static final String DB_URL = ""jdbc:mysql://localhost:3306/payments"";
+    private static final String DB_USER = ""admin"";
+    private static final String DB_PASS = ""password123""; // hardcoded credentials
+
+    public boolean processPayment(String accountId, double amount) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+            // Check balance
+            stmt = conn.prepareStatement(""SELECT balance FROM accounts WHERE id = ?"");
+            stmt.setString(1, accountId);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                double balance = rs.getDouble(""balance"");
+                if (balance >= amount) {
+                    // Deduct amount
+                    stmt = conn.prepareStatement(""UPDATE accounts SET balance = balance - ? WHERE id = ?"");
+                    stmt.setDouble(1, amount);
+                    stmt.setString(2, accountId);
+                    stmt.executeUpdate();
+                    // Log transaction (no error handling)
+                    logTransaction(accountId, amount);
+                    return true;
+                }
+            }
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try { if (rs != null) rs.close(); } catch (SQLException ignored) {}
+            try { if (stmt != null) stmt.close(); } catch (SQLException ignored) {}
+            try { if (conn != null) conn.close(); } catch (SQLException ignored) {}
+        }
+    }
+
+    private void logTransaction(String accountId, double amount) {
+        // Insecure: building SQL with string concatenation, vulnerable to injection
+        String sql = ""INSERT INTO transactions (account_id, amount) VALUES ('"" + accountId + ""', "" + amount + "")"";
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            // Swallow exception, transaction not logged
+        }
+    }
+}
+",code_defect,SQL injection vulnerability and hardcoded credentials,,openai/gpt-oss-120b
+C++,"#include <iostream>
+#include <vector>
+#include <thread>
+#include <mutex>
+
+std::mutex mtx;
+
+void processData(const std::vector<int>& data, int& result) {
+    result = 0;
+    for (int val : data) {
+        result += val;
+    }
+}
+
+void processInParallel(const std::vector<int>& data1, const std::vector<int>& data2) {
+    int result1 = 0, result2 = 0;
+
+    std::thread t1(processData, data1, std::ref(result1));
+    std::thread t2(processData, data2, std::ref(result2));
+
+    t1.join();
+    t2.join();
+
+    std::lock_guard<std::mutex> lock(mtx);
+    std::cout << ""Result1: "" << result1 << std::endl;
+    std::cout << ""Result2: "" << result2 << std::endl;
+}
+
+int main() {
+    std::vector<int> data1 = {1, 2, 3, 4, 5};
+    std::vector<int> data2 = {10, 20, 30};
+
+    processInParallel(data1, data2);
+
+    return 0;
+}",code_defect,race_condition,,qwen/qwen3-32b
+Java,"public class UserAuthenticator {
+    private static final String DEFAULT_PASSWORD = ""password123"";
+    public boolean authenticate(String username, String password) {
+        if (username.isEmpty() || password.isEmpty()) {
+            return false;
+        }
+        return password.equals(DEFAULT_PASSWORD);
+    }
+}",code_defect,insecure_password_storage,,llama-3.3-70b-versatile
+C++,"#include <vector>
+#include <string>
+#include <iostream>
+
+class UserManager {
+public:
+    UserManager() {}
+    void addUser(const std::string& name) {
+        users.push_back(name);
+    }
+    // Returns the user at the given index (0‑based). Returns empty string if out of range.
+    std::string getUser(size_t index) const {
+        if (index < users.size()) {
+            return users[index];
+        }
+        return """";
+    }
+    // Returns the total number of users.
+    size_t count() const { return users.size(); }
+private:
+    std::vector<std::string> users;
+};
+
+int main() {
+    UserManager um;
+    um.addUser(""Alice"");
+    um.addUser(""Bob"");
+    um.addUser(""Charlie"");
+    // Intent: print the last user
+    std::cout << ""Last user: "" << um.getUser(um.count()) << std::endl; // off‑by‑one defect
+    return 0;
+}
+",code_defect,off_by_one_error,,openai/gpt-oss-120b
+Python,"import requests
+
+def fetch_data(url):
+    response = requests.get(url)
+    data = response.json()
+    return data
+
+
+def process_data(data):
+    results = []
+    for item in data:
+        if 'id' in item and 'value' in item:
+            processed = {
+                'identifier': item['id'],
+                'content': item['value']
+            }
+            results.append(processed)
+    return results
+
+
+def main():
+    url = 'https://api.example.com/data'
+    raw_data = fetch_data(url)
+    processed = process_data(raw_data)
+    return processed
+
+if __name__ == '__main__':
+    main()",clean_code,well_structured,,qwen/qwen3-32b
+Python,"
+class UserService:
+    def __init__(self, db_connection):
+        self.db_connection = db_connection
+
+    def get_user(self, user_id):
+        query = ""SELECT * FROM users WHERE id = "" + str(user_id)
+        cursor = self.db_connection.cursor()
+        cursor.execute(query)
+        user_data = cursor.fetchone()
+        return user_data
+
+    def get_all_users(self):
+        query = ""SELECT * FROM users""
+        cursor = self.db_connection.cursor()
+        cursor.execute(query)
+        users_data = cursor.fetchall()
+        return users_data
+
+# usage
+import mysql.connector
+db_connection = mysql.connector.connect(host=""localhost"", user=""root"", password=""password"", database=""mydb"")
+user_service = UserService(db_connection)
+print(user_service.get_user(1))
+print(user_service.get_all_users())
+",code_defect,insecure_SQL_query,,llama-3.3-70b-versatile
+Python,"import json
+import os
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+class ConfigLoader:
+    def __init__(self, config_path):
+        self.config_path = config_path
+        self._config = None
+        self._load()
+
+    def _load(self):
+        # Vulnerable: using eval on file content
+        with open(self.config_path, 'r') as f:
+            data = f.read()
+            self._config = eval(data)  # unsafe deserialization
+        logger.info('Configuration loaded')
+
+    def get(self, key, default=None):
+        return self._config.get(key, default)
+
+class DataProcessor:
+    def __init__(self, config_loader):
+        self.config = config_loader
+        self.batch_size = self.config.get('batch_size', 100)
+
+    def process(self, records):
+        results = []
+        for i in range(0, len(records), self.batch_size):
+            batch = records[i:i+self.batch_size]
+            # Assume heavy computation here
+            processed = [self._transform(r) for r in batch]
+            results.extend(processed)
+        return results
+
+    def _transform(self, record):
+        # Simple transformation
+        return {k: v.upper() if isinstance(v, str) else v for k, v in record.items()}
+
+if __name__ == '__main__':
+    cfg = ConfigLoader(os.getenv('APP_CONFIG', 'config.txt'))
+    processor = DataProcessor(cfg)
+    sample_data = [{'name': 'alice', 'age': 30}, {'name': 'bob', 'age': 25}]
+    output = processor.process(sample_data)
+    print(json.dumps(output, indent=2))",code_defect,unsafe_deserialization,,openai/gpt-oss-120b
+Java,"public class OrderProcessor {
+    public void processOrder(Order order) {
+        if (order == null) {
+            return;
+        }
+        for (int i = 0; i < order.getItems().size(); i++) {
+            Item item = order.getItems().get(i);
+            if (item != null && item.getPrice() > 0) {
+                double tax = item.getPrice() * 0.10;
+                double total = item.getPrice() + tax;
+                System.out.println(""Item: "" + item.getName() + "", Total: "" + total);
+            }
+        }
+    }
+}
+
+// Unused class
+class LegacyTaxCalculator {
+    public double calculateTax(double price) {
+        return price * 0.15;
+    }
+}",code_smell,dead_code,,qwen/qwen3-32b
+JavaScript,"
+   class PaymentProcessor {
+      constructor() {
+         this.payments = [];
+      }
+
+      addPayment(payment) {
+         this.payments.push(payment);
+      }
+
+      processPayments() {
+         for (let i = 0; i < this.payments.length; i++) {
+            const payment = this.payments[i];
+            if (payment.amount > 1000) {
+               console.log(`Processing large payment of $${payment.amount} for ${payment.customerName}`);
+            } else {
+               console.log(`Processing payment of $${payment.amount} for ${payment.customerName}`);
+            }
+            // remove the payment after processing
+            this.payments.splice(i, 1);
+            // Decrement i to avoid skipping payments
+            i--;
+         }
+      }
+   }
+
+   const processor = new PaymentProcessor();
+   processor.addPayment({ amount: 500, customerName: 'John Doe' });
+   processor.addPayment({ amount: 1500, customerName: 'Jane Doe' });
+   processor.processPayments();
+   ",code_smell,inefficient_loop,,llama-3.3-70b-versatile
+Python,"import json
+import os
+import threading
+
+class ConfigLoader:
+    """"""Loads configuration from a JSON file and caches it.
+    
+    The class is intended to be used as a singleton across threads.
+    """"""
+    _instance = None
+    _lock = threading.Lock()
+    _cache = {}
+
+    def __new__(cls, config_path):
+        # Double-checked locking pattern (incorrectly implemented)
+        if cls._instance is None:
+            with cls._lock:
+                if cls._instance is None:
+                    cls._instance = super(ConfigLoader, cls).__new__(cls)
+        return cls._instance
+
+    def __init__(self, config_path):
+        # NOTE: This runs on every call, potentially overwriting cache
+        self.config_path = config_path
+        self._load_config()
+
+    def _load_config(self):
+        if self.config_path in self._cache:
+            self.config = self._cache[self.config_path]
+            return
+        with open(self.config_path, 'r') as f:
+            # Unsafe: directly loading JSON without validation
+            data = json.load(f)
+        self._cache[self.config_path] = data
+        self.config = data
+
+    def get(self, key, default=None):
+        return self.config.get(key, default)
+
+# Usage example (in production code this would be called from many threads)
+loader = ConfigLoader('/etc/app/config.json')
+api_key = loader.get('api_key')
+print('API Key:', api_key)
+",code_defect,thread_safety_issue,,openai/gpt-oss-120b
+JavaScript,"class UserManager {
+  constructor() {
+    this.users = [];
+  }
+
+  addUser(user) {
+    this.users.push(user);
+  }
+
+  deleteUser(id) {
+    this.users = this.users.filter(user => user.id !== id);
+  }
+
+  updateUser(id, data) {
+    const index = this.users.findIndex(user => user.id === id);
+    if (index !== -1) {
+      this.users[index] = { ...this.users[index], ...data };
+    }
+  }
+
+  getAllUsers() {
+    return this.users;
+  }
+
+  getUserById(id) {
+    return this.users.find(user => user.id === id);
+  }
+}
+
+// Example usage:
+const userManager = new UserManager();
+userManager.addUser({ id: 1, name: 'Alice' });
+userManager.addUser({ id: 2, name: 'Bob' });
+userManager.updateUser(1, { name: 'Alice Updated' });
+userManager.deleteUser(2);",clean_code,well_structured,,qwen/qwen3-32b
+JavaScript,"
+   class UserService {
+      constructor(userRepository) {
+         this.userRepository = userRepository;
+      }
+
+      async getAllUsers() {
+         const users = await this.userRepository.findAll();
+         const result = [];
+         for (let i = 0; i < users.length; i++) {
+            const user = users[i];
+            if (user.isActive) {
+               result.push(user);
+            }
+         }
+         return result;
+      }
+
+      async getUserById(id) {
+         return await this.userRepository.findById(id);
+      }
+   }
+
+   class UserRepository {
+      async findAll() {
+         // simulate database query
+         return [
+            { id: 1, name: 'John Doe', isActive: true },
+            { id: 2, name: 'Jane Doe', isActive: false },
+            { id: 3, name: 'Bob Smith', isActive: true }
+         ];
+      }
+
+      async findById(id) {
+         // simulate database query
+         const users = await this.findAll();
+         for (let i = 0; i < users.length; i++) {
+            if (users[i].id === id) {
+               return users[i];
+            }
+         }
+         return null;
+      }
+   }
+
+   const userRepository = new UserRepository();
+   const userService = new UserService(userRepository);
+   ",code_smell,inefficient_loop,,llama-3.3-70b-versatile
+Python,"import os
+import json
+import threading
+
+class ConfigLoader:
+    """"""Loads configuration from a JSON file and caches it globally.""""""
+    _cache = {}
+    _lock = threading.Lock()
+
+    @classmethod
+    def load(cls, path: str) -> dict:
+        # Missing validation of the path; could be exploited with symlink attack
+        with cls._lock:
+            if path in cls._cache:
+                return cls._cache[path]
+            with open(path, 'r') as f:
+                data = json.load(f)
+                cls._cache[path] = data
+                return data
+
+class UserManager:
+    def __init__(self, config_path: str):
+        self.config = ConfigLoader.load(config_path)
+        self.users = {}
+
+    def add_user(self, username: str, password: str):
+        # Storing passwords in plain text – security defect
+        self.users[username] = password
+        self._save_users()
+
+    def authenticate(self, username: str, password: str) -> bool:
+        stored = self.users.get(username)
+        return stored == password
+
+    def _save_users(self):
+        # Writes to a fixed file location without proper permissions handling
+        with open('/tmp/users.db', 'w') as f:
+            json.dump(self.users, f)
+
+# Example usage (would be called from a web service)
+manager = UserManager('/etc/app/config.json')
+manager.add_user('admin', 'secret123')
+print('Authenticated:', manager.authenticate('admin', 'secret123'))
+",code_defect,insecure_password_storage,,openai/gpt-oss-120b
+Python,"import os
+import json
+import requests
+
+API_KEY = 'mysecretkey123'
+
+def get_weather_data(city, country, units='metric'):
+    url = f'https://api.openweathermap.org/data/2.5/weather?q={city},{country}&units={units}&appid={API_KEY}'
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
+
+def display_weather_data(data):
+    if data:
+        print(f""City: {data['name']}"")
+        print(f""Temperature: {data['main']['temp']} {data['units']}"")
+        print(f""Description: {data['weather'][0]['description']}"")
+    else:
+        print('Failed to retrieve weather data.')
+
+if __name__ == '__main__':
+    user_city = input('Enter city name: ')
+    user_country = input('Enter country code: ')
+    weather_data = get_weather_data(user_city, user_country)
+    display_weather_data(weather_data)",code_defect,hardcoded_secrets,,qwen/qwen3-32b
+JavaScript,"
+   class UserService {
+      constructor(userRepository) {
+         this.userRepository = userRepository;
+      }
+
+      async getAllUsers() {
+         const users = await this.userRepository.findAll();
+         return users.map(user => ({ id: user.id, name: user.name }));
+      }
+
+      async getUserById(id) {
+         const user = await this.userRepository.findById(id);
+         if (!user) {
+            throw new Error('User not found');
+         }
+         return { id: user.id, name: user.name };
+      }
+   }
+
+   class UserRepository {
+      async findAll() {
+         // Simulating database query
+         return [
+            { id: 1, name: 'John Doe' },
+            { id: 2, name: 'Jane Doe' }
+         ];
+      }
+
+      async findById(id) {
+         // Simulating database query
+         const users = await this.findAll();
+         return users.find(user => user.id === id);
+      }
+   }
+
+   const userRepository = new UserRepository();
+   const userService = new UserService(userRepository);
+   ",code_smell,tight_coupling,,llama-3.3-70b-versatile
+Python,"import json
+import os
+
+class ConfigLoader:
+    def __init__(self, config_path):
+        self.config_path = config_path
+        self.config = {}
+        self._load()
+
+    def _load(self):
+        # Insecure: directly loading JSON from a file path supplied by user without validation
+        with open(self.config_path, 'r') as f:
+            self.config = json.load(f)
+
+    def get(self, key, default=None):
+        return self.config.get(key, default)
+
+class DataProcessor:
+    def __init__(self, db_conn_str):
+        self.db_conn_str = db_conn_str
+        self._connect()
+
+    def _connect(self):
+        # Simulated DB connection (placeholder)
+        self.conn = self.db_conn_str
+
+    def fetch_user(self, user_id):
+        # SQL injection vulnerability: user_id is concatenated directly into query string
+        query = f""SELECT * FROM users WHERE id = {user_id}""
+        # Placeholder for actual DB execution
+        return self._execute(query)
+
+    def _execute(self, query):
+        # Mock execution returning dummy data
+        print(f""Executing query: {query}"")
+        return {""id"": 1, ""name"": ""Alice""}
+
+def main():
+    cfg = ConfigLoader(os.getenv('CONFIG_PATH', '/etc/app/config.json'))
+    db = DataProcessor(cfg.get('db_connection'))
+    user = db.fetch_user(os.getenv('USER_ID'))
+    print(f""Fetched user: {user}"")
+
+if __name__ == ""__main__"":
+    main()",code_defect,sql_injection,,openai/gpt-oss-120b
+Java,"public class OrderProcessor {
+    private List<Order> orders = new ArrayList<>();
+
+    public void processOrders() {
+        for (Order order : orders) {
+            if (order.isValid()) {
+                processPayment(order);
+                sendConfirmationEmail(order);
+                updateInventory(order);
+            }
+        }
+    }
+
+    private void processPayment(Order order) {
+        PaymentGateway gateway = new PaymentGateway();
+        gateway.process(order.getAmount(), order.getPaymentMethod());
+    }
+
+    private void sendConfirmationEmail(Order order) {
+        EmailService emailService = new EmailService();
+        emailService.sendEmail(order.getCustomerEmail(), ""Order Confirmed"");
+    }
+
+    private void updateInventory(Order order) {
+        InventoryManager manager = new InventoryManager();
+        manager.deductStock(order.getItems());
+    }
+
+    public void addOrder(Order order) {
+        orders.add(order);
+    }
+}",code_smell,feature envy,,qwen/qwen3-32b
+Python,"class UserDatabase:
+    def __init__(self, db_file):
+        self.conn = None
+        self.db_file = db_file
+    def connect(self):
+        import sqlite3
+        self.conn = sqlite3.connect(self.db_file)
+    def get_user(self, user_id):
+        if self.conn is None:
+            self.connect()
+        cursor = self.conn.cursor()
+        cursor.execute('SELECT * FROM users WHERE id=?', (user_id,))
+        return cursor.fetchone()
+    def get_all_users(self):
+        if self.conn is None:
+            self.connect()
+        cursor = self.conn.cursor()
+        cursor.execute('SELECT * FROM users')
+        return cursor.fetchall()
+",code_smell,tight_coupling,,llama-3.3-70b-versatile
+Python,"import json
+import os
+import sqlite3
+
+class UserManager:
+    def __init__(self, db_path):
+        self.db_path = db_path
+        self.conn = sqlite3.connect(self.db_path)
+        self._ensure_table()
+
+    def _ensure_table(self):
+        cursor = self.conn.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT NOT NULL,
+                data TEXT
+            )
+        ''')
+        self.conn.commit()
+
+    def add_user(self, username, data):
+        cursor = self.conn.cursor()
+        # BUG: Directly embedding user data into SQL leads to SQL injection
+        query = f""INSERT INTO users (username, data) VALUES ('{username}', '{json.dumps(data)}')""
+        cursor.execute(query)
+        self.conn.commit()
+
+    def get_user(self, user_id):
+        cursor = self.conn.cursor()
+        cursor.execute('SELECT username, data FROM users WHERE id = ?', (user_id,))
+        row = cursor.fetchone()
+        if row:
+            username, data_json = row
+            # BUG: Using eval on stored data can execute arbitrary code
+            data = eval(data_json)
+            return {'id': user_id, 'username': username, 'data': data}
+        return None
+
+    def close(self):
+        self.conn.close()
+
+# Example usage (would be removed in production)
+if __name__ == '__main__':
+    manager = UserManager('users.db')
+    manager.add_user('alice', {'role': 'admin', 'prefs': {'theme': 'dark'}})
+    user = manager.get_user(1)
+    print(user)
+    manager.close()",code_defect,sql_injection_and_unsafe_eval,,openai/gpt-oss-120b
+C++,"#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class DataProcessor {
+public:
+    void process(const vector<string>& data) {
+        for (const auto& line : data) {
+            if (line.find(""ERROR"") != string::npos) {
+                cout << ""Error found in line: "" << line << endl;
+            }
+            else if (line.find(""WARNING"") != string::npos) {
+                cout << ""Warning found in line: "" << line << endl;
+            }
+            else {
+                cout << ""Normal line: "" << line << endl;
+            }
+        }
+    }
+};
+
+int main() {
+    vector<string> input = {""This is a normal line."",
+                            ""This line contains an ERROR."",
+                            ""Another normal line."",
+                            ""A WARNING is present here.""};
+
+    DataProcessor processor;
+    processor.process(input);
+
+    return 0;
+}",clean_code,well_structured,,qwen/qwen3-32b
+C++,"#include <iostream>
+#include <vector>
+#include <algorithm>
+
+class Student {
+public:
+    std::string name;
+    int grade;
+    Student(std::string n, int g) : name(n), grade(g) {}
+};
+
+bool compareStudents(const Student& a, const Student& b) {
+    return a.grade < b.grade;
+}
+
+int main() {
+    std::vector<Student> students = {Student(""John"", 85), Student(""Alice"", 90), Student(""Bob"", 78)};
+    std::sort(students.begin(), students.end(), compareStudents);
+    for (const auto& student : students) {
+        std::cout << student.name << ""'s grade: "" << student.grade << std::endl;
+    }
+    return 0;
+}",clean_code,well_structured,,llama-3.3-70b-versatile
+C++,"#include <iostream>
+#include <vector>
+#include <string>
+#include <mutex>
+#include <thread>
+
+class LogProcessor {
+public:
+    LogProcessor(const std::string& file) : logFile(file) {}
+    void start() {
+        // Launch worker threads
+        for (int i = 0; i < 4; ++i) {
+            workers.emplace_back(&LogProcessor::process, this);
+        }
+        // Wait for threads to finish (never joins, causing a hang)
+        for (auto& t : workers) {
+            t.join();
+        }
+    }
+private:
+    void process() {
+        std::lock_guard<std::mutex> lock(mtx);
+        // Simulate reading a line (placeholder)
+        std::string line = readLine();
+        if (line.empty()) return;
+        // Very naive parsing, may overflow buffer
+        char buffer[64];
+        std::snprintf(buffer, sizeof(buffer), ""%s"", line.c_str());
+        // Store processed line
+        processed.push_back(std::string(buffer));
+    }
+    std::string readLine() {
+        static int count = 0;
+        if (count++ < 10) return ""log entry"" + std::to_string(count);
+        return """"; // signal end
+    }
+    std::string logFile;
+    std::vector<std::thread> workers;
+    std::vector<std::string> processed;
+    std::mutex mtx;
+};
+
+int main() {
+    LogProcessor lp(""/var/log/app.log"");
+    lp.start();
+    std::cout << ""Processing complete"" << std::endl;
+    return 0;
+}",code_defect,deadlock_hang_due_to_join_before_threads_finish,,openai/gpt-oss-120b
+JavaScript,"class UserProcessor {
+  constructor(users) {
+    this.users = users;
+  }
+
+  processUsers() {
+    for (let i = 0; i < this.users.length; i++) {
+      const user = this.users[i];
+      if (user && user.isActive && user.email) {
+        this.sendEmail(user.email);
+      }
+    }
+  }
+
+  sendEmail(email) {
+    console.log(`Sending email to ${email}`);
+    // Simulate email sending
+    setTimeout(() => {
+      console.log(`Email to ${email} sent.`);
+    }, 1000);
+  }
+}
+
+// Example usage:
+const users = [
+  { id: 1, name: 'Alice', isActive: true, email: 'alice@example.com' },
+  { id: 2, name: 'Bob', isActive: false, email: 'bob@example.com' },
+  { id: 3, name: 'Charlie', isActive: true, email: '' }
+];
+
+const processor = new UserProcessor(users);
+processor.processUsers();",clean_code,well_structured,,qwen/qwen3-32b
+C++,"
+#include <iostream>
+#include <vector>
+#include <string>
+
+class User {
+public:
+    User(std::string name, int age) : name(name), age(age) {}
+    std::string getName() { return name; }
+    int getAge() { return age; }
+private:
+    std::string name;
+    int age;
+};
+
+class UserRepository {
+public:
+    void addUser(User user) { users.push_back(user); }
+    User getUser(int index) { return users[index]; }
+private:
+    std::vector<User> users;
+};
+
+int main() {
+    UserRepository repo;
+    repo.addUser(User(""John"", 30));
+    repo.addUser(User(""Alice"", 25));
+    std::cout << repo.getUser(0).getName() << std::endl;
+    std::cout << repo.getUser(1).getName() << std::endl;
+    return 0;
+}
+",clean_code,well_structured,,llama-3.3-70b-versatile
+JavaScript,"const fs = require('fs');
+
+class UserService {
+    constructor(db) {
+        this.db = db;
+    }
+
+    // Retrieves user profile and writes it to a file (async but incorrectly handled)
+    exportUserProfile(userId) {
+        // Fetch user data
+        const user = this.db.getUserById(userId);
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        // Serialize user data (potentially contains circular references)
+        const data = JSON.stringify(user);
+
+        // Write to file without waiting for the async operation to finish
+        fs.writeFile('profile_' + userId + '.json', data, (err) => {
+            if (err) {
+                console.error('Failed to write file:', err);
+            }
+        });
+        // Function returns before file write completes, caller assumes completion
+        return true;
+    }
+}
+
+module.exports = UserService;",code_defect,async_handling_bug,,openai/gpt-oss-120b
+JavaScript,"class UserAuth {
+  constructor() {
+    this.cache = {};
+  }
+
+  async authenticateUser(userId, token) {
+    if (this.cache[userId] === token) {
+      return true;
+    }
+
+    const user = await fetchUserFromDatabase(userId);
+    if (!user) return false;
+
+    if (user.token === token) {
+      this.cache[userId] = token;
+      return true;
+    }
+
+    return false;
+  }
+
+  fetchUserFromDatabase = async (userId) => {
+    const db = await connectToDatabase();
+    return db.users.find(user => user.id === userId);
+  }
+}
+
+// Example usage
+const auth = new UserAuth();
+auth.authenticateUser('1234', 'abc123');",code_defect,race_condition,,qwen/qwen3-32b
+Java,public class UserProcessor { private List<User> users; public UserProcessor(List<User> users) { this.users = users; } public void processUsers() { for (int i = 0; i < users.size(); i++) { User user = users.get(i); if (user.getActive()) { // some processing } } } public void addUser(User user) { users.add(user); } },code_smell,tight_coupling,,llama-3.3-70b-versatile
+C++,"#include <vector>
+#include <string>
+#include <iostream>
+
+class LogProcessor {
+public:
+    LogProcessor(const std::string& file) : filename(file) {}
+    void load_and_process() {
+        std::vector<std::string> lines = read_file();
+        for (size_t i = 0; i <= lines.size(); ++i) { // off-by-one error
+            process_line(lines[i]);
+        }
+    }
+private:
+    std::string filename;
+    std::vector<std::string> read_file() {
+        // Mocked file read; in real code this would read from disk
+        return {""INFO start"", ""WARN something"", ""ERROR failure""};
+    }
+    void process_line(const std::string& line) {
+        if (line.find(""ERROR"") != std::string::npos) {
+            std::cerr << ""Critical error detected: "" << line << std::endl;
+        }
+    }
+};
+
+int main() {
+    LogProcessor lp(""/var/log/app.log"");
+    lp.load_and_process();
+    return 0;
+}
+",code_defect,off_by_one_error,,openai/gpt-oss-120b
+Java,"public class OrderProcessor {
+
+    public void processOrder(Order order) {
+        if (order != null) {
+            if (order.getItems().size() > 0) {
+                for (OrderItem item : order.getItems()) {
+                    if (item.getQuantity() > 0) {
+                        double price = item.getProduct().getPrice();
+                        double total = item.getQuantity() * price;
+                        System.out.println(""Processing item: "" + item.getProductName() + "" Total: "" + total);
+                    }
+                }
+            }
+        }
+    }
+
+    public void cancelOrder(Order order) {
+        if (order != null) {
+            order.setStatus(""cancelled"");
+            System.out.println(""Order cancelled"");
+        }
+    }
+
+    public void applyDiscount(Order order, double discountPercentage) {
+        if (order != null && discountPercentage > 0) {
+            for (OrderItem item : order.getItems()) {
+                double price = item.getProduct().getPrice();
+                double discountedPrice = price - (price * discountPercentage / 100);
+                item.setPrice(discountedPrice);
+            }
+        }
+    }
+}",code_smell,large_class,,qwen/qwen3-32b
+JavaScript,"
+   class ShoppingCart {
+      constructor() {
+         this.items = [];
+      }
+
+      addItem(item) {
+         this.items.push(item);
+      }
+
+      removeItem(item) {
+         const index = this.items.indexOf(item);
+         if (index !== -1) {
+            this.items.splice(index, 1);
+         }
+      }
+
+      calculateTotal() {
+         let total = 0;
+         for (let i = 0; i < this.items.length; i++) {
+            total += this.items[i].price;
+         }
+         return total;
+      }
+   }
+
+   class Product {
+      constructor(name, price) {
+         this.name = name;
+         this.price = price;
+      }
+   }
+
+   const cart = new ShoppingCart();
+   cart.addItem(new Product('Product1', 10.99));
+   cart.addItem(new Product('Product2', 5.99));
+   console.log(cart.calculateTotal());
+   ",code_smell,tight_coupling,,llama-3.3-70b-versatile
+JavaScript,"const fs = require('fs');
+
+class ConfigLoader {
+  constructor(path) {
+    this.path = path;
+    this.cache = null;
+  }
+
+  load() {
+    if (this.cache) return this.cache;
+    const data = fs.readFileSync(this.path, 'utf8');
+    // Assume JSON but no validation
+    this.cache = JSON.parse(data);
+    return this.cache;
+  }
+}
+
+function processUserInput(input) {
+  // Directly concatenates user input into a shell command
+  const cmd = `ls -l ${input}`;
+  const result = require('child_process').execSync(cmd).toString();
+  return result;
+}
+
+function main() {
+  const config = new ConfigLoader('./config.json').load();
+  const userPath = process.argv[2] || '.';
+  const files = processUserInput(userPath);
+  console.log('Files:', files);
+}
+
+main();",code_defect,command_injection,,openai/gpt-oss-120b
+Python,"import requests
+import json
+
+class UserProcessor:
+    def __init__(self):
+        self.users = []
+        self.cache = {}
+
+    def load_users(self, url):
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = json.loads(response.text)
+            for user in data:
+                self.users.append(user)
+
+    def process_users(self):
+        for user in self.users:
+            if user['id'] in self.cache:
+                print(f""Skipping cached user: {user['id']}"")
+                continue
+            if 'email' in user:
+                self.cache[user['id']] = user['email']
+            else:
+                self.cache[user['id']] = None
+
+    def get_email(self, user_id):
+        if user_id in self.cache:
+            return self.cache[user_id]
+        return None
+
+# Unused function
+# def get_user_count():
+#     return len(user_processor.users)
+
+user_processor = UserProcessor()
+user_processor.load_users('https://api.example.com/users')
+user_processor.process_users()",code_smell,dead_code,,qwen/qwen3-32b
+Java,"public class PaymentProcessor { private static final String DB_URL = ""jdbc:mysql://localhost:3306/payments""; private static final String DB_USER = ""payment_user""; private static final String DB_PASSWORD = ""password123""; public void processPayment(String paymentId, double amount) { try { java.sql.Connection conn = java.sql.DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD); java.sql.Statement stmt = conn.createStatement(); stmt.executeUpdate(""UPDATE payments SET status = 'processed' WHERE id = '"" + paymentId + ""'""); conn.close(); } catch (Exception e) { System.out.println(""Error processing payment: "" + e.getMessage()); } } }",code_defect,SQL Injection Vulnerability,,llama-3.3-70b-versatile
+JavaScript,"class OrderProcessor {
+    constructor(db) {
+        this.db = db; // expects a DB client with query method
+    }
+
+    // Process a batch of orders and update inventory
+    async processOrders(orders) {
+        for (let i = 0; i < orders.length; i++) {
+            const order = orders[i];
+            // Update order status
+            await this.db.query('UPDATE orders SET status = ? WHERE id = ?', ['processed', order.id]);
+            // Decrease inventory for each item
+            for (const item of order.items) {
+                await this.db.query('UPDATE inventory SET quantity = quantity - ? WHERE product_id = ?', [item.qty, item.productId]);
+            }
+        }
+        // Return success without waiting for all queries to finish
+        return true;
+    }
+}
+
+// Usage example (ignores errors)
+const dbClient = require('some-db-lib').createClient();
+const processor = new OrderProcessor(dbClient);
+processor.processOrders(getPendingOrders()); // fire-and-forget, no await
+",code_defect,unhandled async promises leading to race conditions and unawaited errors,,openai/gpt-oss-120b
+Python,"import requests
+import time
+
+def fetch_user_data(user_id):
+    url = f'https://api.example.com/users/{user_id}'
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
+
+def process_user_data(user_data):
+    processed = []
+    for item in user_data['items']:
+        if item['status'] == 'active':
+            processed.append({
+                'id': item['id'],
+                'name': item['name'],
+                'email': item['email'],
+                'last_login': item.get('last_login')
+            })
+    return processed
+
+def main():
+    user_ids = [101, 102, 103, 104, 105]
+    all_processed_data = []
+    for user_id in user_ids:
+        data = fetch_user_data(user_id)
+        if data:
+            all_processed_data.extend(process_user_data(data))
+        time.sleep(1)  # Rate limiting
+    return all_processed_data
+
+if __name__ == '__main__':
+    result = main()
+    print(result)",clean_code,well_structured,,qwen/qwen3-32b
+JavaScript,"
+   class UserAccount {
+     constructor(username, password, email) {
+       this.username = username;
+       this.password = password;
+       this.email = email;
+       this.verified = false;
+     }
+
+     verifyAccount() {
+       this.verified = true;
+     }
+
+     changePassword(newPassword) {
+       this.password = newPassword;
+     }
+   }
+
+   function createNewUser(username, password, email) {
+     const newUser = new UserAccount(username, password, email);
+     return newUser;
+   }
+
+   const user1 = createNewUser('johnDoe', 'password123', 'johndoe@example.com');
+   user1.verifyAccount();
+   user1.changePassword('newPassword123');
+   ",clean_code,well_structured,,llama-3.3-70b-versatile
+Java,"package com.example.payment;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.ArrayList;
+
+public class TransactionProcessor {
+    private static final String DB_URL = ""jdbc:mysql://localhost:3306/payments"";
+    private static final String DB_USER = ""admin"";
+    private static final String DB_PASS = ""password123""; // hardcoded secret
+
+    public List<Transaction> fetchPendingTransactions() throws SQLException {
+        List<Transaction> list = new ArrayList<>();
+        Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+        String sql = ""SELECT id, amount, status FROM transactions WHERE status='PENDING'"";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            Transaction t = new Transaction();
+            t.setId(rs.getInt(""id""));
+            t.setAmount(rs.getDouble(""amount""));
+            t.setStatus(rs.getString(""status""));
+            list.add(t);
+        }
+        // Missing rs.close(), stmt.close(), conn.close()
+        return list;
+    }
+
+    public void processTransactions() {
+        try {
+            List<Transaction> pending = fetchPendingTransactions();
+            for (Transaction tx : pending) {
+                // Simulate processing
+                if (tx.getAmount() > 0) {
+                    updateTransactionStatus(tx.getId(), ""COMPLETED"");
+                } else {
+                    updateTransactionStatus(tx.getId(), ""FAILED"");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // swallowing exception
+        }
+    }
+
+    private void updateTransactionStatus(int id, String newStatus) {
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+            String sql = ""UPDATE transactions SET status='"" + newStatus + ""' WHERE id="" + id; // SQL injection risk
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.executeUpdate();
+            // Missing stmt.close(), conn.close()
+        } catch (SQLException e) {
+            // Ignored silently
+        }
+    }
+}
+
+class Transaction {
+    private int id;
+    private double amount;
+    private String status;
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public double getAmount() { return amount; }
+    public void setAmount(double amount) { this.amount = amount; }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+}
+",code_defect,resource_leak_and_sql_injection,,openai/gpt-oss-120b
+Python,"import os
+import json
+
+class DataProcessor:
+    def __init__(self, file_path):
+        self.file_path = file_path
+        self.data = None
+
+    def load_data(self):
+        with open(self.file_path, 'r') as file:
+            self.data = json.load(file)
+
+    def process(self):
+        results = []
+        for item in self.data:
+            cleaned = item.strip().lower()
+            if cleaned:
+                results.append(cleaned)
+        return results
+
+    def save_results(self, output_path, results):
+        with open(output_path, 'w') as file:
+            json.dump(results, file)
+
+if __name__ == '__main__':
+    processor = DataProcessor('input.json')
+    processor.load_data()
+    processed = processor.process()
+    processor.save_results('output.json', processed)",clean_code,well_structured,,qwen/qwen3-32b
+C++,"#include <iostream>
+#include <vector>
+
+class BankAccount {
+public:
+    BankAccount(double balance) : balance_(balance) {}
+    void deposit(double amount) { balance_ += amount; }
+    void withdraw(double amount) { balance_ -= amount; }
+    double getBalance() { return balance_; }
+private:
+    double balance_;
+};
+
+int main() {
+    BankAccount account(1000.0);
+    account.deposit(500.0);
+    std::cout << ""Balance: "" << account.getBalance() << std::endl;
+    return 0;
+}",clean_code,well_structured,,llama-3.3-70b-versatile
+Java,"import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class UserService {
+    private static final String DB_URL = ""jdbc:mysql://localhost:3306/appdb"";
+    private static final String DB_USER = ""app_user"";
+    private static final String DB_PASSWORD = ""p@ssw0rd""; // hardcoded secret
+
+    public List<User> getActiveUsers() throws SQLException {
+        List<User> users = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            String sql = ""SELECT id, username, email FROM users WHERE status = 'active'"";
+            stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setId(rs.getInt(""id""));
+                u.setUsername(rs.getString(""username""));
+                u.setEmail(rs.getString(""email""));
+                users.add(u);
+            }
+        } finally {
+            // Missing close for ResultSet and PreparedStatement, and no handling for SQLException
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return users;
+    }
+}
+
+class User {
+    private int id;
+    private String username;
+    private String email;
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+}",code_defect,resource_leak_and_hardcoded_credentials,,openai/gpt-oss-120b
+Java,"public class OrderProcessor {
+
+    private static final String ADMIN_ROLE = ""ADMIN"";
+
+    public void processOrder(Order order, String userRole) {
+        if (order != null && userRole != null && userRole.equals(ADMIN_ROLE)) {
+            if (order.getItems().size() > 0) {
+                double total = 0;
+                for (Item item : order.getItems()) {
+                    total += item.getPrice();
+                }
+                if (total > 100) {
+                    System.out.println(""Order processed for "" + userRole + "" with total: "" + total);
+                } else {
+                    System.out.println(""Order requires approval for user "" + userRole);
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Order order = new Order();
+        order.addItem(new Item(20));
+        order.addItem(new Item(40));
+        new OrderProcessor().processOrder(order, ""ADMIN"");
+    }
+}
+
+class Order {
+    private List<Item> items = new ArrayList<>();
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+}
+
+class Item {
+    private double price;
+
+    public Item(double price) {
+        this.price = price;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+}",code_smell,large_method,,qwen/qwen3-32b
+Java,"public class UserService { private Map<String, User> users = new HashMap<>(); public void addUser(String id, User user) { users.put(id, user); } public User getUser(String id) { return users.get(id); } public void updateUser(String id, User user) { users.put(id, user); } public void deleteUser(String id) { users.remove(id); } public List<User> getAllUsers() { return new ArrayList<>(users.values()); } }",clean_code,well_structured,,llama-3.3-70b-versatile
+Python,"import json
+import os
+
+class ConfigLoader:
+    def __init__(self, path):
+        self.path = path
+        self.config = {}
+        self._load()
+
+    def _load(self):
+        # NOTE: Using eval on file contents – insecure!
+        with open(self.path, 'r') as f:
+            data = f.read()
+            self.config = eval(data)  # code defect: unsafe deserialization
+
+    def get(self, key, default=None):
+        return self.config.get(key, default)
+
+class UserService:
+    def __init__(self, config_path):
+        self.cfg = ConfigLoader(config_path)
+        self.users = {}
+
+    def add_user(self, user_id, name):
+        self.users[user_id] = {'name': name, 'active': True}
+
+    def deactivate_user(self, user_id):
+        # Potential KeyError if user_id not present – missing error handling
+        self.users[user_id]['active'] = False
+
+    def is_active(self, user_id):
+        return self.users.get(user_id, {}).get('active', False)
+
+# Example usage (would be in production code)
+service = UserService('/etc/app/config.cfg')
+service.add_user(42, 'Alice')
+service.deactivate_user(42)
+print('Is active:', service.is_active(42))",code_defect,unsafe_deserialization,,openai/gpt-oss-120b
+Java,"public class OrderProcessor {
+    private final List<Order> orders;
+
+    public OrderProcessor() {
+        this.orders = new ArrayList<>();
+        this.orders.add(new Order(""123"", ""John Doe"", 200.0));
+        this.orders.add(new Order(""456"", ""Jane Smith"", 50.0));
+        this.orders.add(new Order(""789"", ""Alice Johnson"", 1000.0));
+    }
+
+    public void processOrders() {
+        for (Order order : orders) {
+            if (order.getTotal() > 100) {
+                applyDiscount(order, 10);
+                System.out.println(""Processed order: "" + order);
+            } else {
+                System.out.println(""Order not eligible for processing: "" + order);
+            }
+        }
+    }
+
+    private void applyDiscount(Order order, int discountPercentage) {
+        double discountAmount = order.getTotal() * (discountPercentage / 100.0);
+        order.setTotal(order.getTotal() - discountAmount);
+    }
+
+    public static void main(String[] args) {
+        new OrderProcessor().processOrders();
+    }
+}
+
+class Order {
+    private String id;
+    private String customerName;
+    private double total;
+
+    public Order(String id, String customerName, double total) {
+        this.id = id;
+        this.customerName = customerName;
+        this.total = total;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    @Override
+    public String toString() {
+        return ""Order{\""id='"" + id + '\', customerName='"" + customerName + ""', total="" + total + '}';
+    }
+}",clean_code,well_structured,,qwen/qwen3-32b
+JavaScript,"
+   class UserManager {
+      constructor() {
+         this.users = [];
+      }
+
+      addUser(username, email) {
+         for (let user of this.users) {
+            if (user.username === username) {
+               throw new Error('Username already exists');
+            }
+         }
+         this.users.push({ username, email });
+      }
+
+      removeUser(username) {
+         for (let i = 0; i < this.users.length; i++) {
+            if (this.users[i].username === username) {
+               this.users.splice(i, 1);
+               break;
+            }
+         }
+      }
+
+      getUser(username) {
+         for (let user of this.users) {
+            if (user.username === username) {
+               return user;
+            }
+         }
+         return null;
+      }
+   }
+
+   let userManager = new UserManager();
+   userManager.addUser('johnDoe', 'johndoe@example.com');
+   console.log(userManager.getUser('johnDoe'));
+   ",code_smell,inefficient_loops,,llama-3.3-70b-versatile
+Java,"package com.example.payment;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.ArrayList;
+
+public class TransactionProcessor {
+    private static final String DB_URL = ""jdbc:mysql://localhost:3306/payments"";
+    private static final String DB_USER = ""admin"";
+    private static final String DB_PASSWORD = ""admin123""; // hardcoded secret
+
+    public List<Transaction> getPendingTransactions() throws SQLException {
+        List<Transaction> list = new ArrayList<>();
+        Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+        String sql = ""SELECT id, amount, status FROM transactions WHERE status='PENDING'"";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            Transaction t = new Transaction();
+            t.setId(rs.getInt(""id""));
+            t.setAmount(rs.getDouble(""amount""));
+            t.setStatus(rs.getString(""status""));
+            list.add(t);
+        }
+        // Missing rs.close(), stmt.close(), conn.close() leading to resource leak
+        return list;
+    }
+
+    public void processTransactions() {
+        try {
+            List<Transaction> pending = getPendingTransactions();
+            for (Transaction t : pending) {
+                // Simulate processing
+                if (t.getAmount() < 0) {
+                    // Incorrect logic: negative amounts should be flagged, but code proceeds
+                    continue;
+                }
+                updateTransactionStatus(t.getId(), ""COMPLETED"");
+            }
+        } catch (SQLException e) {
+            // Swallowing exception, no logging
+        }
+    }
+
+    private void updateTransactionStatus(int transactionId, String newStatus) {
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            String sql = ""UPDATE transactions SET status='"" + newStatus + ""' WHERE id="" + transactionId; // SQL injection risk
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.executeUpdate();
+            // Missing resource cleanup
+        } catch (SQLException e) {
+            // Ignored
+        }
+    }
+}
+
+class Transaction {
+    private int id;
+    private double amount;
+    private String status;
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public double getAmount() { return amount; }
+    public void setAmount(double amount) { this.amount = amount; }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+}",code_defect,SQL injection and resource leak,,openai/gpt-oss-120b
+Java,"public class UserProcessor {
+    private List<User> users;
+
+    public UserProcessor(List<User> users) {
+        this.users = users;
+    }
+
+    public void processUsers() {
+        for (User user : users) {
+            if (user != null && user.getStatus() == 1) {
+                System.out.println(""Processing user: "" + user.getName());
+                sendEmail(user.getEmail(), ""Welcome back!"");
+                updateDatabase(user.getId());
+            }
+        }
+    }
+
+    private void sendEmail(String email, String message) {
+        // Email sending logic (simplified)
+        System.out.println(""Sending email to: "" + email);
+    }
+
+    private void updateDatabase(int userId) {
+        // Database update logic (simplified)
+        System.out.println(""Updating database for user ID: "" + userId);
+    }
+}",code_smell,long_method,,qwen/qwen3-32b
+C++,"
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+class Employee {
+public:
+    Employee(std::string name, int salary) : name(name), salary(salary) {}
+
+    std::string getName() { return name; }
+    int getSalary() { return salary; }
+
+    void setSalary(int newSalary) { salary = newSalary; }
+
+private:
+    std::string name;
+    int salary;
+};
+
+class EmployeeManager {
+public:
+    void addEmployee(Employee employee) { employees.push_back(employee); }
+
+    int calculateTotalSalary() {
+        int total = 0;
+        for (const auto& employee : employees) {
+            total += employee.getSalary();
+        }
+        return total;
+    }
+
+private:
+    std::vector<Employee> employees;
+};
+
+int main() {
+    EmployeeManager manager;
+    manager.addEmployee(Employee(""John"", 50000));
+    manager.addEmployee(Employee(""Alice"", 60000));
+
+    std::cout << ""Total salary: "" << manager.calculateTotalSalary() << std::endl;
+
+    return 0;
+}
+",clean_code,well_structured,,llama-3.3-70b-versatile
+Java,"package com.example.payment;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.ArrayList;
+
+public class PaymentProcessor {
+    private static final String DB_URL = ""jdbc:mysql://localhost:3306/payments"";
+    private static final String USER = ""admin"";
+    private static final String PASS = ""admin123""; // hardcoded credentials
+
+    public List<Payment> fetchPendingPayments() throws SQLException {
+        List<Payment> payments = new ArrayList<>();
+        Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        String sql = ""SELECT id, amount, user_id FROM payments WHERE status='PENDING'"";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            Payment p = new Payment();
+            p.setId(rs.getInt(""id""));
+            p.setAmount(rs.getDouble(""amount""));
+            p.setUserId(rs.getInt(""user_id""));
+            payments.add(p);
+        }
+        // Missing close of ResultSet, Statement, and Connection -> resource leak
+        return payments;
+    }
+
+    public boolean processPayment(Payment payment) {
+        // Simulate external API call that may throw unchecked exception
+        boolean success = externalCharge(payment.getUserId(), payment.getAmount());
+        if (success) {
+            updatePaymentStatus(payment.getId(), ""COMPLETED"");
+        } else {
+            updatePaymentStatus(payment.getId(), ""FAILED"");
+        }
+        return success;
+    }
+
+    private boolean externalCharge(int userId, double amount) {
+        // Dummy implementation, but throws NullPointerException when amount is zero due to bad check
+        if (amount == 0) {
+            String msg = null;
+            return msg.equals(""zero""); // NPE
+        }
+        return Math.random() > 0.2; // 80% success rate
+    }
+
+    private void updatePaymentStatus(int paymentId, String status) {
+        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+             PreparedStatement stmt = conn.prepareStatement(""UPDATE payments SET status=? WHERE id=?"")) {
+            stmt.setString(1, status);
+            stmt.setInt(2, paymentId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            // Swallow exception, no logging
+        }
+    }
+}
+
+class Payment {
+    private int id;
+    private double amount;
+    private int userId;
+    // getters and setters omitted for brevity
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public double getAmount() { return amount; }
+    public void setAmount(double amount) { this.amount = amount; }
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
+}",code_defect,null_pointer_exception_due_to_invalid_check_and_resource_leak,,openai/gpt-oss-120b
+Java,"public class OrderProcessor {
+    private final Database database;
+
+    public OrderProcessor(Database database) {
+        this.database = database;
+    }
+
+    public void processOrder(String orderId) {
+        Order order = database.fetchOrder(orderId);
+        if (order == null) {
+            return;
+        }
+
+        if (order.getItems().isEmpty()) {
+            System.out.println(""Order is empty"");
+            return;
+        }
+
+        for (OrderItem item : order.getItems()) {
+            if (item.getQuantity() <= 0) {
+                continue;
+            }
+            Product product = database.fetchProduct(item.getProductId());
+            if (product == null) {
+                continue;
+            }
+            if (product.getStock() < item.getQuantity()) {
+                System.out.println(""Not enough stock for product "" + item.getProductId());
+                continue;
+            }
+            product.setStock(product.getStock() - item.getQuantity());
+            database.updateProductStock(product);
+        }
+
+        order.setStatus(""PROCESSED"");
+        database.saveOrder(order);
+    }
+
+    public static class Order {
+        private String id;
+        private List<OrderItem> items;
+        private String status;
+
+        // Getters and setters omitted for brevity
+    }
+
+    public static class OrderItem {
+        private String productId;
+        private int quantity;
+
+        // Getters and setters omitted for brevity
+    }
+
+    public static class Product {
+        private String id;
+        private int stock;
+
+        // Getters and setters omitted for brevity
+    }
+
+    public static class Database {
+        public Order fetchOrder(String orderId) {
+            // Mock implementation
+            return new Order();
+        }
+
+        public Product fetchProduct(String productId) {
+            // Mock implementation
+            return new Product();
+        }
+
+        public void updateProductStock(Product product) {
+            // Mock implementation
+        }
+
+        public void saveOrder(Order order) {
+            // Mock implementation
+        }
+    }
+}",code_defect,incorrect_error_handling,,qwen/qwen3-32b
+Python,"import json
+import os
+import sqlite3
+
+class UserManager:
+    def __init__(self, db_path):
+        self.db_path = db_path
+        self.conn = sqlite3.connect(self.db_path)
+        self._ensure_table()
+
+    def _ensure_table(self):
+        cur = self.conn.cursor()
+        cur.execute('''CREATE TABLE IF NOT EXISTS users (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        username TEXT NOT NULL,
+                        data TEXT)''')
+        self.conn.commit()
+
+    def load_user(self, user_id):
+        cur = self.conn.cursor()
+        cur.execute('SELECT username, data FROM users WHERE id = ?', (user_id,))
+        row = cur.fetchone()
+        if row:
+            username, data_json = row
+            # BUG: using eval on stored data can execute arbitrary code
+            user_data = eval(data_json)
+            return {'id': user_id, 'username': username, 'data': user_data}
+        return None
+
+    def save_user(self, username, user_data):
+        cur = self.conn.cursor()
+        data_str = json.dumps(user_data)
+        cur.execute('INSERT INTO users (username, data) VALUES (?, ?)', (username, data_str))
+        self.conn.commit()
+        return cur.lastrowid
+
+    def close(self):
+        self.conn.close()
+
+# Example usage (would be called from elsewhere)
+if __name__ == '__main__':
+    manager = UserManager('users.db')
+    uid = manager.save_user('alice', {'role': 'admin', 'prefs': {'theme': 'dark'}})
+    user = manager.load_user(uid)
+    print(user)
+    manager.close()",code_defect,unsafe_deserialization_using_eval,,openai/gpt-oss-120b
+C++,"#include <iostream>
+#include <vector>
+#include <string>
+
+class DataProcessor {
+public:
+    void process(const std::string& input) {
+        if (input.empty()) return;
+        
+        for (size_t i = 0; i < input.length(); ++i) {
+            if (input[i] == 'a') {
+                processed_data_.push_back('A');
+            } else if (input[i] == 'b') {
+                processed_data_.push_back('B');
+            } else {
+                processed_data_.push_back(input[i]);
+            }
+        }
+    }
+
+    std::string get_processed_data() const {
+        return std::string(processed_data_);
+    }
+
+private:
+    std::vector<char> processed_data_;
+};
+
+int main() {
+    DataProcessor processor;
+    std::string input = ""abc123def"";
+    processor.process(input);
+    std::cout << processor.get_processed_data();
+    return 0;
+}",clean_code,well_structured,,qwen/qwen3-32b
+Java,"public class UserAuthenticator { private String username; private String password; public UserAuthenticator(String username, String password) { this.username = username; this.password = password; } public boolean authenticate() { return username.equals(""admin"") && password.equals(""password123""); } public static void main(String[] args) { UserAuthenticator authenticator = new UserAuthenticator(""admin"", ""password123""); System.out.println(authenticator.authenticate()); } }",code_defect,hardcoded_secrets,,llama-3.3-70b-versatile
+Java,"import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class UserRepository {
+    private static final String DB_URL = ""jdbc:mysql://localhost:3306/appdb"";
+    private static final String DB_USER = ""appuser"";
+    private static final String DB_PASSWORD = ""p@ssw0rd""; // hardcoded secret
+
+    public List<User> findUsersByName(String name) {
+        List<User> users = new ArrayList<>();
+        String query = ""SELECT id, username, email FROM users WHERE username = '"" + name + ""'""; // SQL injection risk
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt(""id""));
+                user.setUsername(rs.getString(""username""));
+                user.setEmail(rs.getString(""email""));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+}
+
+class User {
+    private int id;
+    private String username;
+    private String email;
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+}",code_defect,SQL_injection_and_hardcoded_credentials,,openai/gpt-oss-120b
+Python,"import os
+import requests
+
+def fetch_and_save_data(url, filename):
+    response = requests.get(url)
+    with open(filename, 'w') as f:
+        f.write(response.text)
+
+    print(f""Data saved to {filename}"")
+
+if __name__ == ""__main__"":
+    url = ""https://example.com/data""
+    filename = ""data.txt""
+    fetch_and_save_data(url, filename)
+
+    # Legacy code
+    # if not os.path.exists(filename):
+    #     raise FileNotFoundError(""Data file not found!"")
+    
+    # TODO: Add error handling for HTTP errors
+    # TODO: Add logging instead of print statements",code_smell,missing_error_handling,,qwen/qwen3-32b
+Java,"public class UserDAO { private Connection conn; public UserDAO() { try { Class.forName(""com.mysql.cj.jdbc.Driver""); conn = DriverManager.getConnection(""jdbc:mysql://localhost:3306/mydb"", ""root"", ""password""); } catch (Exception e) { System.out.println(e.getMessage()); } } public void saveUser(User user) { String query = ""INSERT INTO users (name, email) VALUES ('"" + user.getName() + ""', '"" + user.getEmail() + ""')""; try { Statement stmt = conn.createStatement(); stmt.executeUpdate(query); } catch (Exception e) { System.out.println(e.getMessage()); } } }",code_defect,SQL Injection Vulnerability,,llama-3.3-70b-versatile
+Python,"import json
+import os
+import threading
+
+class ConfigLoader:
+    def __init__(self, config_path):
+        self.config_path = config_path
+        self._config = None
+        self._lock = threading.Lock()
+        self._load_config()
+
+    def _load_config(self):
+        # NOTE: No error handling; assumes file exists and is valid JSON
+        with open(self.config_path, 'r') as f:
+            self._config = json.load(f)
+
+    def get(self, key, default=None):
+        return self._config.get(key, default)
+
+    def reload(self):
+        # Potential race condition: other threads may read stale config
+        with self._lock:
+            self._load_config()
+
+class DataProcessor:
+    def __init__(self, config_loader):
+        self.config = config_loader
+        self.batch_size = int(self.config.get('batch_size', 100))
+        self.output_dir = self.config.get('output_dir', '/tmp')
+
+    def process(self, data_items):
+        # Off-by-one error: processes one extra item beyond the list length
+        for i in range(0, len(data_items)):
+            item = data_items[i]
+            result = self._process_item(item)
+            self._save_result(result, i)
+        # Missing handling for empty data_items leads to IndexError above
+
+    def _process_item(self, item):
+        # Simulate some processing that could raise exceptions
+        return {'id': item['id'], 'value': item['value'] * 2}
+
+    def _save_result(self, result, index):
+        filename = os.path.join(self.output_dir, f""result_{index}.json"")
+        with open(filename, 'w') as f:
+            json.dump(result, f)
+
+# Example usage (would be called from elsewhere in the application)
+config = ConfigLoader('/etc/app/config.json')
+processor = DataProcessor(config)
+sample_data = [{'id': i, 'value': i*10} for i in range(5)]
+processor.process(sample_data)
+",code_defect,off_by_one_error_and_race_condition,,openai/gpt-oss-120b
+C++,"#include <iostream>
+#include <vector>
+#include <thread>
+#include <mutex>
+
+std::mutex mtx;
+
+void process_data(const std::vector<int>& data) {
+    for (int i = 0; i < data.size(); ++i) {
+        if (data[i] % 2 == 0) {
+            std::thread t([i] {
+                std::this_thread::sleep_for(std::chrono::milliseconds(10));
+                std::lock_guard<std::mutex> lock(mtx);
+                std::cout << ""Processed: "" << i << std::endl;
+            });
+            t.detach();
+        }
+    }
+}
+
+int main() {
+    std::vector<int> data = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    process_data(data);
+    return 0;
+}",code_defect,resource_leak,,qwen/qwen3-32b
+C++,"#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+class Employee {
+public:
+    string name;
+    int salary;
+    Employee(string n, int s) : name(n), salary(s) {}
+};
+
+class Company {
+private:
+    vector<Employee> employees;
+public:
+    void addEmployee(Employee e) { employees.push_back(e); }
+    void sortEmployees() { sort(employees.begin(), employees.end(), [](Employee a, Employee b) { return a.salary > b.salary; }); }
+    void printEmployees() { for (auto e : employees) cout << e.name << "" - "" << e.salary << endl; }
+};
+
+int main() {
+    Company c;
+    c.addEmployee(Employee(""John"", 50000));
+    c.addEmployee(Employee(""Alice"", 60000));
+    c.sortEmployees();
+    c.printEmployees();
+    return 0;
+}",code_smell,tight_coupling,,llama-3.3-70b-versatile
+JavaScript,"const fs = require('fs');
+
+class ConfigLoader {
+    constructor(path) {
+        this.path = path;
+        this.cache = null;
+    }
+
+    load() {
+        if (this.cache) return this.cache;
+        const data = fs.readFileSync(this.path, 'utf8');
+        // Assume JSON but no validation
+        this.cache = JSON.parse(data);
+        return this.cache;
+    }
+}
+
+class UserService {
+    constructor(db) {
+        this.db = db;
+        this.config = new ConfigLoader('./config.json');
+    }
+
+    async getUserProfile(userId) {
+        const cfg = this.config.load();
+        const query = `SELECT * FROM users WHERE id = ${userId}`; // SQL injection risk
+        const result = await this.db.query(query);
+        if (!result) return null;
+        const user = result[0];
+        // Missing check for undefined fields
+        return {
+            id: user.id,
+            name: user.name,
+            role: cfg.defaultRole || 'guest'
+        };
+    }
+}
+
+module.exports = { ConfigLoader, UserService };",code_defect,sql_injection,,openai/gpt-oss-120b
+Python,"import requests
+import json
+
+API_KEY = '1234567890'
+BASE_URL = 'https://api.example.com/data'
+
+
+def fetch_and_process_data(user_id, user_token):
+    headers = {
+        'Authorization': f'Bearer {user_token}',
+        'Content-Type': 'application/json'
+    }
+    
+    params = {
+        'user_id': user_id,
+        'api_key': API_KEY
+    }
+    
+    response = requests.get(BASE_URL, headers=headers, params=params)
+    if response.status_code == 200:
+        data = response.json()
+        
+        processed = []
+        for item in data:
+            if item.get('status') == 'active':
+                processed.append(item['id'])
+        return processed
+    
+    return []
+
+
+def main():
+    user_id = 1234
+    user_token = 'a1b2c3d4'
+    results = fetch_and_process_data(user_id, user_token)
+    print(json.dumps(results, indent=2))
+
+if __name__ == '__main__':
+    main()",code_defect,security_vulnerability,,qwen/qwen3-32b
+C++,"#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class User {
+public:
+    string name;
+    int age;
+    User(string n, int a) : name(n), age(a) {}
+};
+
+class UserRepository {
+private:
+    vector<User> users;
+public:
+    void addUser(User user) { users.push_back(user); }
+    vector<User> getAllUsers() { return users; }
+};
+
+int main() {
+    UserRepository repo;
+    repo.addUser(User(""John"", 30));
+    repo.addUser(User(""Alice"", 25));
+    vector<User> allUsers = repo.getAllUsers();
+    for (User user : allUsers) {
+        cout << user.name << "" is "" << user.age << "" years old."" << endl;
+    }
+    return 0;
+}",clean_code,well_structured,,llama-3.3-70b-versatile
+JavaScript,"const fs = require('fs');
+
+class UserCache {
+  constructor(filePath) {
+    this.filePath = filePath;
+    this.cache = {};
+    this._load();
+  }
+
+  _load() {
+    // Synchronously read the cache file; if it fails, ignore errors silently
+    try {
+      const data = fs.readFileSync(this.filePath, 'utf8');
+      this.cache = JSON.parse(data);
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  getUser(id) {
+    // Return cached user or fetch from DB (simulated)
+    if (this.cache[id]) {
+      return Promise.resolve(this.cache[id]);
+    }
+    return this._fetchFromDb(id).then(user => {
+      this.cache[id] = user;
+      // Asynchronously write updated cache but don't wait for it
+      this._save();
+      return user;
+    });
+  }
+
+  _fetchFromDb(id) {
+    // Simulated DB call with a delay
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve({ id, name: `User${id}` });
+      }, 100);
+    });
+  }
+
+  _save() {
+    // Write cache to disk without handling errors; possible race condition
+    fs.writeFile(this.filePath, JSON.stringify(this.cache), err => {
+      // silently ignore write errors
+    });
+  }
+}
+
+// Usage example
+const cache = new UserCache('./userCache.json');
+cache.getUser(42).then(user => console.log('Fetched:', user));
+",code_defect,race_condition_due_to_async_write_without_sync,,openai/gpt-oss-120b
+Java,"public class OrderProcessor {
+
+    public void processOrders(List<Order> orders) {
+        for (Order order : orders) {
+            if (order != null && order.getStatus() == OrderStatus.PENDING) {
+                validateOrder(order);
+                if (order.getTotalAmount() > 0) {
+                    calculateTax(order);
+                    deductInventory(order);
+                    markAsProcessed(order);
+                }
+            }
+        }
+    }
+
+    private void validateOrder(Order order) {
+        if (order.getItems().isEmpty()) {
+            throw new IllegalArgumentException(""Order must have items"");
+        }
+    }
+
+    private void calculateTax(Order order) {
+        double taxRate = 0.10;
+        double totalTax = order.getTotalAmount() * taxRate;
+        order.setTaxAmount(totalTax);
+    }
+
+    private void deductInventory(Order order) {
+        for (OrderItem item : order.getItems()) {
+            Product product = getProductById(item.getProductId());
+            if (product.getStock() >= item.getQuantity()) {
+                product.setStock(product.getStock() - item.getQuantity());
+            } else {
+                throw new RuntimeException(""Not enough stock for product: "" + item.getProductId());
+            }
+        }
+    }
+
+    private Product getProductById(String productId) {
+        // Simulate fetching product from DB
+        return new Product(productId, 100);
+    }
+
+    private void markAsProcessed(Order order) {
+        order.setStatus(OrderStatus.PROCESSED);
+    }
+}",code_smell,long_method,,qwen/qwen3-32b
+JavaScript,"const fs = require('fs');
+
+class ConfigLoader {
+  constructor(path) {
+    this.path = path;
+    this.cache = null;
+  }
+
+  load() {
+    // Reads config file synchronously each call, ignoring cache
+    const data = fs.readFileSync(this.path, 'utf8');
+    this.cache = JSON.parse(data);
+    return this.cache;
+  }
+
+  get(key) {
+    if (!this.cache) this.load();
+    return this.cache[key];
+  }
+}
+
+// Global singleton used across the app
+const config = new ConfigLoader('/etc/app/config.json');
+
+function processRequest(req, res) {
+  // Assume req.body contains user-provided JSON string
+  const userData = JSON.parse(req.body);
+  // Directly write user data to a file without validation
+  fs.writeFileSync('/var/log/app/userdata.log', userData);
+  res.end('OK');
+}
+
+module.exports = { config, processRequest };",code_defect,unsafe_file_write,,openai/gpt-oss-120b
+C++,"#include <iostream>
+#include <vector>
+#include <string>
+
+class DataProcessor {
+public:
+    void process(const std::string& input) {
+        std::vector<std::string> tokens = split(input, ',');
+        for (const auto& token : tokens) {
+            std::cout << ""Processing: "" << token << std::endl;
+            if (!validate(token)) {
+                std::cerr << ""Invalid token: "" << token << std::endl;
+                continue;
+            }
+            transform(token);
+        }
+    }
+
+private:
+    std::vector<std::string> split(const std::string& str, char delimiter) {
+        std::vector<std::string> result;
+        std::string temp;
+        for (char c : str) {
+            if (c == delimiter) {
+                result.push_back(temp);
+                temp.clear();
+            } else {
+                temp += c;
+            }
+        }
+        if (!temp.empty()) {
+            result.push_back(temp);
+        }
+        return result;
+    }
+
+    bool validate(const std::string& token) {
+        return !token.empty();
+    }
+
+    void transform(const std::string& token) {
+        std::cout << ""Transformed: "" << token << std::endl;
+    }
+};
+
+int main() {
+    DataProcessor processor;
+    std::string input = ""token1,token2,token3"";
+    processor.process(input);
+    return 0;
+}",clean_code,well_structured,,qwen/qwen3-32b
+C++,"
+      #include <iostream>
+      #include <vector>
+      #include <string>
+
+      class User {
+      public:
+         User(std::string name, int age) : name(name), age(age) {}
+
+         std::string getName() { return name; }
+         int getAge() { return age; }
+
+      private:
+         std::string name;
+         int age;
+      };
+
+      class UserService {
+      public:
+         static User getUser(std::vector<User> users, std::string name) {
+            for (const auto& user : users) {
+               if (user.getName() == name) {
+                  return user;
+               }
+            }
+            return User("""", -1);
+         }
+      };
+
+      int main() {
+         std::vector<User> users = {User(""John"", 30), User(""Alice"", 25)};
+         User user = UserService::getUser(users, ""John"");
+         std::cout << user.getName() << std::endl;
+         return 0;
+      }
+   ",code_smell,inefficient_loop,,llama-3.3-70b-versatile
+JavaScript,"const fs = require('fs');
+
+class ConfigLoader {
+  constructor(path) {
+    this.path = path;
+    this.cache = null;
+  }
+
+  load() {
+    // No error handling; if file is missing, throws and crashes the process
+    const data = fs.readFileSync(this.path, 'utf8');
+    // Parses JSON without try/catch; malformed JSON will crash
+    this.cache = JSON.parse(data);
+    return this.cache;
+  }
+
+  get(key) {
+    // Returns undefined if key not present, but callers assume a value
+    return this.cache[key];
+  }
+}
+
+// Global singleton used across the app
+const config = new ConfigLoader('/etc/app/config.json');
+config.load();
+
+function processRequest(req, res) {
+  // Assume userId is always a number; no validation
+  const userId = parseInt(req.query.id);
+  // Potential injection if userId is NaN, leads to unexpected DB query
+  const query = `SELECT * FROM users WHERE id = ${userId}`;
+  db.query(query, (err, rows) => {
+    if (err) {
+      res.status(500).send('Server error');
+      return;
+    }
+    // Off‑by‑one error: returns the second row instead of the first
+    const user = rows[1];
+    res.json({ user });
+  });
+}
+
+module.exports = { processRequest, config };",code_defect,logic_error_and_missing_error_handling,,openai/gpt-oss-120b
+Java,"public class OrderProcessor {
+    private final List<Order> orders;
+
+    public OrderProcessor(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public void processOrders() {
+        for (Order order : orders) {
+            if (order != null && order.isValid()) {
+                processOrder(order);
+            }
+        }
+    }
+
+    private void processOrder(Order order) {
+        try {
+            String productCode = order.getProductCode();
+            int quantity = order.getQuantity();
+            if (productCode != null && quantity > 0) {
+                Inventory inventory = Inventory.getInstance();
+                inventory.reduceStock(productCode, quantity);
+                order.setStatus(""PROCESSED"");
+            }
+        } catch (Exception e) {
+            // Swallowing exception silently
+            System.out.println(""Error processing order: "" + e.getMessage());
+        }
+    }
+
+    // Unused method
+    @Deprecated
+    public void oldMethod() {
+        // Some old logic
+    }
+}",code_smell,exception_swallowed,,qwen/qwen3-32b
+JavaScript,"class UserManager {
+  constructor() {
+    this.users = [];
+  }
+
+  addUser(user) {
+    this.users.push(user);
+  }
+
+  removeUser(username) {
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i].username === username) {
+        this.users.splice(i, 1);
+        break;
+      }
+    }
+  }
+
+  getUser(username) {
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i].username === username) {
+        return this.users[i];
+      }
+    }
+    return null;
+  }
+}
+
+let userManager = new UserManager();
+let user = { username: 'john', password: 'password123' };
+userManager.addUser(user);
+let retrievedUser = userManager.getUser('john');
+console.log(retrievedUser);",code_smell,inefficient_loop,,llama-3.3-70b-versatile
+Python,"import json
+import os
+import threading
+
+class ConfigLoader:
+    def __init__(self, config_path):
+        self.config_path = config_path
+        self._config = None
+        self._lock = threading.Lock()
+        self._load_config()
+
+    def _load_config(self):
+        # Loads JSON config without any validation
+        with open(self.config_path, 'r') as f:
+            self._config = json.load(f)
+
+    def get(self, key, default=None):
+        # No thread safety for reads, potential race condition
+        return self._config.get(key, default)
+
+    def set(self, key, value):
+        # Updates config and writes back to file without atomicity
+        with self._lock:
+            self._config[key] = value
+            with open(self.config_path, 'w') as f:
+                json.dump(self._config, f)
+
+# Global singleton instance (bad practice)
+config = ConfigLoader(os.getenv('APP_CONFIG', '/etc/app/config.json'))
+
+def process_user_input(user_input):
+    # Directly uses user input in eval, leading to code injection
+    result = eval(user_input)
+    return result
+
+def main():
+    # Example usage
+    user_expr = input('Enter expression: ')
+    print('Result:', process_user_input(user_expr))
+
+if __name__ == '__main__':
+    main()",code_defect,code_injection,,openai/gpt-oss-120b
+JavaScript,"function processUserInput(input) {
+  let result = '';
+  if (input === 'start') {
+    result = 'Operation started';
+  } else if (input === 'stop') {
+    result = 'Operation stopped';
+  } else if (input === 'pause') {
+    result = 'Operation paused';
+  } else if (input === 'restart') {
+    result = 'Operation restarted';
+  } else {
+    result = 'Invalid input';
+  }
+  return result;
+}
+
+function executeCommand(command, userId) {
+  const status = processUserInput(command);
+  console.log(`User ${userId} issued command: ${command} - Status: ${status}`);
+  return status;
+}
+
+function handleRequest(req, res) {
+  const userId = req.headers.user_id;
+  const command = req.body.command;
+  const result = executeCommand(command, userId);
+  res.send(result);
+}",code_smell,long_method,,qwen/qwen3-32b
+Python,"
+class UserAccount:
+    def __init__(self, username, password, email):
+        self.username = username
+        self.password = password
+        self.email = email
+
+    def authenticate(self, input_password):
+        if input_password == self.password:
+            return True
+        else:
+            return False
+
+    def update_password(self, new_password):
+        self.password = new_password
+
+    def get_account_info(self):
+        return {
+            'username': self.username,
+            'email': self.email
+        }
+
+def main():
+    account = UserAccount('test_user', 'test_password', 'test@example.com')
+    print(account.authenticate('test_password'))  # Should print: True
+    print(account.authenticate('wrong_password'))  # Should print: False
+    account.update_password('new_password')
+    print(account.authenticate('new_password'))  # Should print: True
+    print(account.get_account_info())
+
+if __name__ == '__main__':
+    main()
+",code_smell,plain_text_password_storage,,llama-3.3-70b-versatile
+Python,"import os
+import json
+import sqlite3
+from datetime import datetime
+
+class UserManager:
+    def __init__(self, db_path='users.db'):
+        self.conn = sqlite3.connect(db_path)
+        self._ensure_table()
+
+    def _ensure_table(self):
+        cur = self.conn.cursor()
+        cur.execute('''CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT NOT NULL,
+            password_hash TEXT NOT NULL,
+            created_at TEXT NOT NULL
+        )''')
+        self.conn.commit()
+
+    def create_user(self, username, password):
+        # NOTE: In real code use a proper password hashing library
+        password_hash = self._simple_hash(password)
+        cur = self.conn.cursor()
+        cur.execute('INSERT INTO users (username, password_hash, created_at) VALUES (?, ?, ?)',
+                    (username, password_hash, datetime.utcnow().isoformat()))
+        self.conn.commit()
+        return cur.lastrowid
+
+    def _simple_hash(self, password):
+        # Very insecure hash for demonstration only
+        return str(sum(ord(c) for c in password))
+
+    def authenticate(self, username, password):
+        cur = self.conn.cursor()
+        cur.execute('SELECT password_hash FROM users WHERE username = ?', (username,))
+        row = cur.fetchone()
+        if row:
+            stored_hash = row[0]
+            # BUG: using == on strings is fine, but the hash function is insecure and collisions are possible
+            return stored_hash == self._simple_hash(password)
+        return False
+
+    def export_user_data(self, export_path):
+        cur = self.conn.cursor()
+        cur.execute('SELECT id, username, created_at FROM users')
+        users = [{'id': r[0], 'username': r[1], 'created_at': r[2]} for r in cur.fetchall()]
+        # SECURITY ISSUE: writes to a path without validation, potential path traversal
+        with open(export_path, 'w') as f:
+            json.dump(users, f)
+
+    def close(self):
+        self.conn.close()
+
+# Usage example (would be in a different module)
+if __name__ == '__main__':
+    manager = UserManager()
+    manager.create_user('alice', 'password123')
+    # The following line silently fails if authentication fails, no logging
+    if manager.authenticate('alice', 'password123'):
+        print('Authenticated')
+    else:
+        print('Authentication failed')
+    manager.export_user_data('/tmp/user_export.json')
+    manager.close()",code_defect,insecure_hash_and_path_traversal,,openai/gpt-oss-120b
+Python,"import requests
+
+class UserAPI:
+    def __init__(self):
+        self.base_url = 'https://api.example.com/users'
+
+    def fetch_users(self, limit=100, page=1):
+        response = requests.get(f'{self.base_url}?limit={limit}&page={page}')
+        response.raise_for_status()
+        return response.json()
+
+    def update_user(self, user_id, data):
+        response = requests.put(f'{self.base_url}/{user_id}', json=data)
+        if response.status_code == 200:
+            return response.json()
+        return None
+
+    def delete_user(self, user_id):
+        response = requests.delete(f'{self.base_url}/{user_id}')
+        return response.status_code == 204
+
+    def get_user_by_email(self, email):
+        users = self.fetch_users()
+        for user in users:
+            if user['email'] == email:
+                return user
+        return None",clean_code,well_structured,,qwen/qwen3-32b
+C++,"#include <vector>
+#include <string>
+#include <iostream>
+
+class UserManager {
+public:
+    UserManager() {
+        // Load users from a mock database
+        users_ = {""alice"", ""bob"", ""carol""};
+    }
+
+    // Returns the user name at the given index, or empty string if out of range
+    std::string getUserByIndex(int index) const {
+        // BUG: Off‑by‑one error – should be index >= 0 && index < users_.size()
+        if (index > 0 && index <= static_cast<int>(users_.size())) {
+            return users_[index];
+        }
+        return """";
+    }
+
+    // Adds a new user
+    void addUser(const std::string& name) {
+        users_.push_back(name);
+    }
+
+private:
+    std::vector<std::string> users_;
+};
+
+int main() {
+    UserManager um;
+    um.addUser(""dave"");
+    // Expect to retrieve ""alice"" at index 0, but will get empty string due to bug
+    std::cout << ""User at 0: '"" << um.getUserByIndex(0) << ""'"" << std::endl;
+    // This will incorrectly access out of bounds when index equals size
+    std::cout << ""User at 4: '"" << um.getUserByIndex(4) << ""'"" << std::endl;
+    return 0;
+}
+",code_defect,off_by_one_error,,openai/gpt-oss-120b
+C++,"#include <iostream>
+#include <vector>
+
+void processData(std::vector<int>& data, int threshold, int& countAbove, int& countBelow) {
+    for (size_t i = 0; i < data.size(); ++i) {
+        if (data[i] > threshold) {
+            ++countAbove;
+        } else {
+            ++countBelow;
+        }
+    }
+
+    // Legacy code for debugging
+    // std::cout << ""Debug: Threshold is "" << threshold << std::endl;
+}
+
+int main() {
+    std::vector<int> values = {10, 20, 30, 5, 25, 50};
+    int above = 0, below = 0;
+
+    processData(values, 20, above, below);
+
+    std::cout << ""Values above threshold: "" << above << std::endl;
+    std::cout << ""Values below threshold: "" << below << std::endl;
+
+    return 0;
+}",code_smell,code_smell,,qwen/qwen3-32b
+JavaScript,class UserService { constructor(userDao) { this.userDao = userDao; } async getUser(id) { let user = await this.userDao.getUser(id); if (user) { return user; } else { let users = await this.userDao.getUsers(); for (let u of users) { if (u.id === id) { return u; } } } return null; } },code_smell,inefficient_loop,,llama-3.3-70b-versatile
+Python,"import sqlite3
+
+class UserRepository:
+    def __init__(self, db_path: str):
+        self.conn = sqlite3.connect(db_path)
+        self.conn.row_factory = sqlite3.Row
+        self._ensure_schema()
+
+    def _ensure_schema(self):
+        self.conn.execute('''
+            CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT NOT NULL,
+                email TEXT NOT NULL
+            )
+        ''')
+        self.conn.commit()
+
+    def add_user(self, username: str, email: str) -> int:
+        cur = self.conn.execute(
+            ""INSERT INTO users (username, email) VALUES (?, ?)"",
+            (username, email)
+        )
+        self.conn.commit()
+        return cur.lastrowid
+
+    def get_users_page(self, page: int, page_size: int = 10):
+        offset = (page - 1) * page_size
+        # BUG: off-by-one error, should be LIMIT page_size OFFSET offset
+        query = f""SELECT * FROM users LIMIT {offset}, {page_size}""
+        cur = self.conn.execute(query)
+        return [dict(row) for row in cur.fetchall()]
+
+# Example usage (would be called elsewhere in the application)
+repo = UserRepository('app.db')
+repo.add_user('alice', 'alice@example.com')
+repo.add_user('bob', 'bob@example.com')
+# This will return incorrect results due to the off-by-one bug
+users_page = repo.get_users_page(1)
+print(users_page)",code_defect,off_by_one_error_in_sql_limit_offset,,openai/gpt-oss-120b
+Java,"public class UserProcessor {
+    private List<String> users = new ArrayList<>();
+
+    public void addUser(String username) {
+        if (username != null && !username.isEmpty()) {
+            users.add(username);
+        }
+    }
+
+    public void processUsers() {
+        for (String user : users) {
+            if (user.equals(""admin"")) {
+                System.out.println(""Admin user found."");
+            } else {
+                for (int i = 0; i < 10000; i++) {
+                    System.out.print(""*"" + user);
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        UserProcessor processor = new UserProcessor();
+        processor.addUser(""admin"");
+        processor.addUser(""user1"");
+        processor.processUsers();
+    }
+}",code_smell,inefficient_algorithm,,qwen/qwen3-32b
+Python,"import json
+import os
+import threading
+
+class ConfigLoader:
+    """"""Loads configuration from a JSON file and caches it in memory.""""""
+    _cache = {}
+    _lock = threading.Lock()
+
+    @classmethod
+    def get_config(cls, path: str) -> dict:
+        # Missing validation: path could be absolute or user-controlled
+        with cls._lock:
+            if path in cls._cache:
+                return cls._cache[path]
+            with open(path, 'r') as f:
+                data = json.load(f)
+                cls._cache[path] = data
+                return data
+
+class UserService:
+    def __init__(self, config_path: str):
+        self.config = ConfigLoader.get_config(config_path)
+        self.db_path = self.config.get('db_path')
+
+    def get_user(self, user_id: int) -> dict:
+        # Insecure: directly concatenates user_id into SQL query
+        query = f""SELECT * FROM users WHERE id = {user_id};""
+        conn = self._connect_db()
+        cursor = conn.cursor()
+        cursor.execute(query)
+        row = cursor.fetchone()
+        conn.close()
+        if row:
+            return {'id': row[0], 'name': row[1]}
+        return {}
+
+    def _connect_db(self):
+        # Hardcoded secret password
+        password = ""P@ssw0rd!""
+        # Simulated DB connection using sqlite3 for illustration
+        import sqlite3
+        conn = sqlite3.connect(self.db_path)
+        conn.execute(f""PRAGMA key = '{password}';"")
+        return conn
+
+# Usage example (would be in production code)
+service = UserService('/etc/app/config.json')
+print(service.get_user(42))",code_defect,SQL_injection,,openai/gpt-oss-120b
+JavaScript,"class UserManager {
+  constructor() {
+    this.users = [];
+    this.admins = [];
+  }
+
+  addUser(user) {
+    if (user.isAdmin) {
+      this.admins.push(user);
+    } else {
+      this.users.push(user);
+    }
+  }
+
+  getUserList() {
+    return this.users;
+  }
+
+  getAdminList() {
+    return this.admins;
+  }
+
+  getUserById(id) {
+    return this.users.find(u => u.id === id);
+  }
+
+  getAdminById(id) {
+    return this.admins.find(a => a.id === id);
+  }
+
+  removeUser(id) {
+    this.users = this.users.filter(u => u.id !== id);
+  }
+
+  removeAdmin(id) {
+    this.admins = this.admins.filter(a => a.id !== id);
+  }
+}
+
+// Example usage
+const userManager = new UserManager();
+userManager.addUser({ id: 1, name: 'Alice' });
+userManager.addUser({ id: 2, name: 'Bob', isAdmin: true });",code_smell,duplicated_code,,qwen/qwen3-32b
+JavaScript,"
+      class UserAuthenticator {
+         constructor(database) {
+            this.database = database;
+         }
+
+         authenticate(username, password) {
+            const query = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`;
+            const user = this.database.executeQuery(query);
+            if (user) {
+               return user;
+            } else {
+               return null;
+            }
+         }
+      }
+
+      const db = {
+         executeQuery: (query) => {
+            // simulate a database query
+            const users = [
+               { id: 1, username: 'admin', password: 'password123' },
+               { id: 2, username: 'user', password: 'password456' }
+            ];
+            const results = users.filter((user) => {
+               const queryString = `SELECT * FROM users WHERE username = '${user.username}' AND password = '${user.password}'`;
+               return queryString.includes(username) && queryString.includes(password);
+            });
+            return results[0];
+         }
+      };
+
+      const authenticator = new UserAuthenticator(db);
+      const user = authenticator.authenticate('admin', 'password123');
+   ",code_defect,insecure_sql_query,,llama-3.3-70b-versatile
+JavaScript,"const fs = require('fs');
+const path = require('path');
+
+class ConfigLoader {
+    constructor(configDir) {
+        this.configDir = configDir;
+        this.cache = {};
+    }
+
+    // Loads a JSON config file and caches it
+    loadConfig(name) {
+        const filePath = path.join(this.configDir, `${name}.json`);
+        if (this.cache[name]) {
+            return Promise.resolve(this.cache[name]);
+        }
+        // Missing await: readFile returns a promise, but we treat it as data
+        const data = fs.promises.readFile(filePath, 'utf8');
+        const parsed = JSON.parse(data);
+        this.cache[name] = parsed;
+        return Promise.resolve(parsed);
+    }
+}
+
+// Usage example
+(async () => {
+    const loader = new ConfigLoader('./config');
+    const dbConfig = await loader.loadConfig('database');
+    console.log('DB Host:', dbConfig.host);
+})();",code_defect,async_handling_error,,openai/gpt-oss-120b
+Python,"import requests
+
+API_KEY = '1234567890'
+BASE_URL = 'https://api.example.com/data'
+
+
+def fetch_user_data(user_id):
+    headers = {
+        'Authorization': f'Bearer {API_KEY}'
+    }
+    params = {
+        'user_id': user_id
+    }
+    
+    response = requests.get(BASE_URL, headers=headers, params=params)
+    
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
+
+
+def process_user_data(user_data):
+    processed = []
+    for entry in user_data['entries']:
+        processed.append({
+            'id': entry['id'],
+            'value': entry['value'] * 2
+        })
+    return processed
+
+
+def main():
+    user_id = input('Enter user ID: ')
+    user_data = fetch_user_data(user_id)
+    
+    if user_data:
+        processed_data = process_user_data(user_data)
+        print('Processed Data:', processed_data)
+    else:
+        print('Failed to fetch user data.')
+
+if __name__ == '__main__':
+    main()",code_defect,hardcoded_credentials,,qwen/qwen3-32b
+Java,"public class PaymentProcessor { private static final String DATABASE_URL = ""jdbc:mysql://localhost:3306/payments""; private static final String DATABASE_USER = ""payment_user""; private static final String DATABASE_PASSWORD = ""password123""; public void processPayment(String paymentId) { try { Class.forName(""com.mysql.cj.jdbc.Driver""); Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(""SELECT * FROM payments WHERE id = '"" + paymentId + ""'""); if (resultSet.next()) { System.out.println(""Payment found: "" + resultSet.getString(""amount"")); } else { System.out.println(""Payment not found""); } connection.close(); } catch (Exception e) { System.out.println(""Error processing payment: "" + e.getMessage()); } } }",code_defect,insecure_sql_query,,llama-3.3-70b-versatile
+C++,"#include <iostream>
+#include <vector>
+#include <thread>
+#include <mutex>
+
+class LogProcessor {
+public:
+    LogProcessor() : stopFlag(false) {}
+    void start() {
+        worker = std::thread(&LogProcessor::process, this);
+    }
+    void stop() {
+        stopFlag = true;
+        if (worker.joinable()) worker.join();
+    }
+    void enqueue(const std::string& msg) {
+        std::lock_guard<std::mutex> lock(mtx);
+        queue.push_back(msg);
+    }
+private:
+    void process() {
+        while (!stopFlag) {
+            std::string msg;
+            {
+                std::lock_guard<std::mutex> lock(mtx);
+                if (!queue.empty()) {
+                    msg = queue.back(); // BUG: should pop from front
+                    queue.pop_back();
+                }
+            }
+            if (!msg.empty()) {
+                // Simulate I/O delay
+                std::this_thread::sleep_for(std::chrono::milliseconds(10));
+                std::cout << ""Processed: "" << msg << std::endl;
+            }
+        }
+    }
+    std::vector<std::string> queue;
+    std::mutex mtx;
+    std::thread worker;
+    bool stopFlag;
+};
+
+int main() {
+    LogProcessor lp;
+    lp.start();
+    for (int i = 0; i < 5; ++i) {
+        lp.enqueue(""msg"" + std::to_string(i));
+    }
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    lp.stop();
+    return 0;
+}
+",code_defect,logic_error,,openai/gpt-oss-120b
+Python,"import os
+import sqlite3
+
+class UserManager:
+    def __init__(self, db_path='users.db'):
+        self.db_path = db_path
+        self.conn = sqlite3.connect(self.db_path)
+        self.create_table()
+
+    def create_table(self):
+        cursor = self.conn.cursor()
+        cursor.execute('''CREATE TABLE IF NOT EXISTS users
+                          (id INTEGER PRIMARY KEY, name TEXT, email TEXT)''')
+        self.conn.commit()
+
+    def add_user(self, name, email):
+        cursor = self.conn.cursor()
+        cursor.execute('INSERT INTO users (name, email) VALUES (?, ?)', (name, email))
+        self.conn.commit()
+
+    def get_user_by_email(self, email):
+        cursor = self.conn.cursor()
+        cursor.execute('SELECT * FROM users WHERE email = %s' % email)
+        return cursor.fetchone()
+
+    def close(self):
+        self.conn.close()
+
+# Example usage
+if __name__ == '__main__':
+    manager = UserManager()
+    manager.add_user('Alice', 'alice@example.com')
+    user = manager.get_user_by_email('alice@example.com')
+    print(user)
+    manager.close()",code_defect,sql_injection,,qwen/qwen3-32b
+Java,"package com.example.payment;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Properties;
+
+public class PaymentProcessor {
+    private static final String DB_URL = ""jdbc:mysql://localhost:3306/payments"";
+    private static final String DB_USER = ""admin"";
+    private static final String DB_PASS = ""admin123""; // hardcoded password
+
+    public boolean processPayment(String accountId, double amount) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+            // Check account balance
+            String balanceQuery = ""SELECT balance FROM accounts WHERE account_id = '"" + accountId + ""'"";
+            stmt = conn.prepareStatement(balanceQuery);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                double balance = rs.getDouble(""balance"");
+                if (balance >= amount) {
+                    // Deduct amount
+                    String update = ""UPDATE accounts SET balance = balance - ? WHERE account_id = ?"";
+                    stmt = conn.prepareStatement(update);
+                    stmt.setDouble(1, amount);
+                    stmt.setString(2, accountId);
+                    stmt.executeUpdate();
+                    // Log transaction (ignores failures)
+                    logTransaction(conn, accountId, amount);
+                    return true;
+                }
+            }
+            return false;
+        } finally {
+            // Resources not closed properly if exception occurs
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+            if (conn != null) conn.close();
+        }
+    }
+
+    private void logTransaction(Connection conn, String accountId, double amount) throws SQLException {
+        String sql = ""INSERT INTO transactions (account_id, amount, timestamp) VALUES (?, ?, NOW())"";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, accountId);
+        ps.setDouble(2, amount);
+        ps.executeUpdate();
+        // Missing ps.close(); leads to resource leak
+    }
+}
+",code_defect,resource_leak_and_sql_injection,,openai/gpt-oss-120b
